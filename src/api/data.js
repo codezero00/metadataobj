@@ -19,6 +19,11 @@ class Data {
     return api.get('metagroup')
   }
 
+  //metadata
+  static metadataclass(){
+    return api.get('metaclass')
+  }
+
 }
 
 export default Data
