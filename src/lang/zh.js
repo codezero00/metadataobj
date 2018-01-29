@@ -43,7 +43,11 @@ export default {
     exportZip: 'zip',
     theme: '换肤',
     clipboardDemo: 'clipboard',
-    i18n: '国际化'
+    i18n: '国际化',
+    metadatamanage: '元数据管理',
+    metadataclass: '元数据分类',
+    metadatadetail: '元数据详情',
+    metadatasearch: '元数据查询'
   },
   login: {
     title: '系统登录',

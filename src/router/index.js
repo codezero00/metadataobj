@@ -4,8 +4,11 @@ import login from '@/page/login'
 import articlelist from '@/page/article/list.vue'
 import createarticle from '@/page/article/create.vue'
 import editarticle from '@/page/article/edit.vue'
-
-
+//
+import metadataclass from '@/page/MetaDataManage/metadataclass.vue'
+import metadatadetail from '@/page/MetaDataManage/metadatadetail.vue'
+import metadatasearch from '@/page/MetaDataManage/metadatasearch.vue'
+//
 import Layout from '@/page/layout/Layout'
 import home from '@/page/home'
 
@@ -48,6 +51,7 @@ export const constrouterMap = [{
       }
     }]
   },
+
   {
     path: '/documentation',
     component: Layout,
@@ -64,6 +68,21 @@ export const constrouterMap = [{
     ]
   },
 
+  {
+    path: '/metadatamanage',
+    component: Layout,
+    // redirect: '/documentation/index',
+    meta: {
+      title: 'metadatamanage',
+      icon: 'documentation'
+    },
+    children: [
+      {path: 'class', component: metadataclass,name: 'metadataclass',meta: {title: 'metadataclass',icon: 'documentation',noCache: false}},
+      {path: 'detail', component: metadatadetail,name: 'metadatadetail',meta: {title: 'metadatadetail',icon: 'documentation',noCache: false}},
+      {path: 'search', component: metadatasearch,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
+      
+    ]
+  },
 
 ]
 
