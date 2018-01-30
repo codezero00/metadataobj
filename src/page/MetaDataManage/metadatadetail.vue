@@ -8,7 +8,7 @@
 
       <el-tree
         class="filter-tree"
-        :data="data2"
+        :data="treedata"
         :props="defaultProps"
         default-expand-all
         :filter-node-method="filterNode"
@@ -192,7 +192,7 @@
     data() {
       return {
         filterText: '',
-        data2: [{
+        treedata: [{
           id: 1,
           label: '一级 1',
           children: [{
