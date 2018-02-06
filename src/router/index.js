@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/page/login'
+<<<<<<< HEAD
 //
 import Layout from '@/page/layout/Layout'
 import home from '@/page/home'
@@ -51,6 +52,16 @@ import graphmodelmanage from '@/page/DataModelManage/graphmodelmanage'
 import modelstatistics from '@/page/DataModelManage/modelstatistics'
 import modellog from '@/page/DataModelManage/modellog'
 //
+=======
+import articlelist from '@/page/article/list.vue'
+import createarticle from '@/page/article/create.vue'
+import editarticle from '@/page/article/edit.vue'
+
+
+import Layout from '@/page/layout/Layout'
+import home from '@/page/home'
+
+>>>>>>> 57cea8b6f3f4db93d8475423a5ab28c0bcfc6790
 Vue.use(Router)
 
 //所有权限通用路由表 
@@ -90,7 +101,10 @@ export const constrouterMap = [{
       }
     }]
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57cea8b6f3f4db93d8475423a5ab28c0bcfc6790
   {
     path: '/documentation',
     component: Layout,
@@ -107,6 +121,7 @@ export const constrouterMap = [{
     ]
   },
 
+<<<<<<< HEAD
   {
     path: '/metadatamanage',
     component: Layout,
@@ -252,6 +267,8 @@ export const constrouterMap = [{
     ]
   },
 
+=======
+>>>>>>> 57cea8b6f3f4db93d8475423a5ab28c0bcfc6790
 
 ]
 
