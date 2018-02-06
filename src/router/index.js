@@ -101,10 +101,6 @@ export const constrouterMap = [{
       }
     }]
   },
-<<<<<<< HEAD
-
-=======
->>>>>>> 57cea8b6f3f4db93d8475423a5ab28c0bcfc6790
   {
     path: '/documentation',
     component: Layout,
@@ -121,7 +117,6 @@ export const constrouterMap = [{
     ]
   },
 
-<<<<<<< HEAD
   {
     path: '/metadatamanage',
     component: Layout,
@@ -267,8 +262,6 @@ export const constrouterMap = [{
     ]
   },
 
-=======
->>>>>>> 57cea8b6f3f4db93d8475423a5ab28c0bcfc6790
 
 ]
 
