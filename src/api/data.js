@@ -19,11 +19,15 @@ class Data {
     return api.get('metagroup')
   }
 
-  //metadata
-  static metadataclass(){
-    return api.get('metaclass')
+  //metaclasstree
+  static metaclasstree(){
+    return api.get('metaclasstree')
   }
 
+  //metaclass
+  static metaclass(params){
+    return api.get('metaclass',{'id':params})
+  }
 }
 
 export default Data

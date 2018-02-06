@@ -11,7 +11,7 @@
         <screenfull class="screenfull right-menu-item"></screenfull>
       </el-tooltip> -->
 
-      <lang-select class="international right-menu-item"></lang-select>
+      <!-- <lang-select class="international right-menu-item"></lang-select> -->
 
       <!-- <el-tooltip effect="dark" content="换肤" placement="bottom">
         <theme-picker class="theme-switch right-menu-item"></theme-picker>

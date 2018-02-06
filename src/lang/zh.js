@@ -44,10 +44,62 @@ export default {
     theme: '换肤',
     clipboardDemo: 'clipboard',
     i18n: '国际化',
+    //
+    articlelist:'文章列表',
+    createarticle:'创建文章',
+    editarticle:'修改文章',
+    //
     metadatamanage: '元数据管理',
     metadataclass: '元数据分类',
     metadatadetail: '元数据详情',
-    metadatasearch: '元数据查询'
+    metadatasearch: '元数据查询',
+    //
+    dwmanage: '数据仓库管理',
+    resource: '数据源配置',
+    createtable: '建库建表配置',
+    shareindex: '数据共享目录',
+    //
+    odsmanage:'前置库管理',
+    odsregister:'前置库注册',
+    odsdelete:'前置库注销',
+    //
+    taskschedulingmanage: '任务调度管理',
+    clientregister: '客户端注册',
+    jobmonitoring: '作业运行监控',
+    jobmanage: '作业管理',
+    joblog: '作业日志',
+    //
+    dataqualitymanage:'数据质量检查',
+    datacheck:'数据检查',
+    datacheckrule:'数据检查规则',
+    //
+    datalifecyclemanage:'数据生命周期',
+    tablelifecycle:'表数据生命周期',
+    viewlifecycle:'视图生命周期',
+    dataline:'数据变迁时间轴',
+    //
+    datarelatedmanage:'数据血缘',
+    relatedanalyze:'血缘分析',
+    relatedgraph:'血缘图谱',
+    //
+    nosqlmanage:'非结构化数据',
+    nosqldatabasemanage:'建库管理',
+    nosqlclassmanage:'分类管理',
+    nosqlindexmanage:'索引管理',
+    nosqladvancedsearch:'高级搜索',
+    nosqlvisualstatistics:'可视化统计',
+    nosqllog:'日志管理',
+    //
+    datamodelmanage:'数据模型管理',  
+    modelregister:'模型注册',
+    modelvisual:'模型可视化展示',
+    modelmonitor:'运行情况监测',
+    mlmodelmanage:'机器学习模型',
+    vedioanlyzemanage:'视频分析模型',
+    graphmodelmanage:'图模型管理',
+    modelstatistics:'模型统计分析',
+    modellog:'模型日志',
+    //
   },
   login: {
     title: '系统登录',
