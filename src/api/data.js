@@ -28,6 +28,32 @@ class Data {
   static metaclass(params){
     return api.get('metaclass',{'id':params})
   }
+
+  //metadatadetail
+  static metadatadetail(params){
+    return api.get('metadata',{'id':params})
+  }
+
+  //dbmanage
+  static dbmanage(){
+    return api.get('dbmanage')
+  }
+
+  //dbtabletree
+  static dbtabletree(){
+    return api.get('dbtabletree')
+  }
+
+  //dbtable
+  static dbtable(params){
+    return api.get('dbtable',{'id':params})
+  }
+
+  //dbtablecolumn
+  static dbtablecolumn(params){
+    return api.get('dbtablecolumn',{'id':params})
+  }
+
 }
 
 export default Data

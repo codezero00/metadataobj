@@ -1,6 +1,6 @@
 <template>
 <el-row type="flex" class="row-bg">
-  <el-col :span="4"><div class="grid-content left"> 
+  <el-col :span="6"><div class="grid-content left"> 
       <el-input
         placeholder="输入关键字进行过滤"
         v-model="filterText">
@@ -16,7 +16,7 @@
       </el-tree>
     </div></el-col>
 
-  <el-col :span="20"><div class="grid-content right">
+  <el-col :span="18"><div class="grid-content right">
     
   <el-table
     :data="upmetadataclass"
@@ -24,98 +24,41 @@
     style="width: 100%">
     <el-table-column
       prop="ZYSXBH"
-      label="分类名称"
+      label="目录名称"
       >
     </el-table-column>
     <el-table-column
       prop="BZBM"
-      label="分类编码"
+      label="是否叶子节点"
       >
     </el-table-column>
     <el-table-column
       prop="ZDMC"
-      label="是否资源项">
+      label="是否关联">
     </el-table-column>
-    <el-table-column
-      prop="YSZDMC"
-      label="中文全拼">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWMC"
-      label="负责单位">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWQP"
-      label="应用系统">
-    </el-table-column>
-    <el-table-column
-      prop="CD"
-      label="分类定义">
-    </el-table-column>
-    <el-table-column
-      prop="LX"
-      label="数据库表">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXDY"
-      label="数据库表（原始）"
-      width="140">
-    </el-table-column>
-    <!-- <el-table-column
-      fixed="left"
-      label="操作"
-      width="90">
-      <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        <el-button type="text" size="small">编辑</el-button>
-      </template>
-    </el-table-column> -->
   </el-table>
+
   <div class='fltag'>
-    <h3>下级分类</h3>
+    <h3>下级目录</h3>
   </div>
+
   <el-table
     :data="downmetadataclass"
     border
     style="width: 100%">
     <el-table-column
       prop="ZYSXBH"
-      label="分类名称"
+      label="目录名称"
       >
     </el-table-column>
     <el-table-column
       prop="BZBM"
-      label="分类编码"
+      label="是否叶子节点"
       >
     </el-table-column>
     <el-table-column
       prop="ZDMC"
-      label="是否资源项">
-    </el-table-column>
-    <el-table-column
-      prop="YSZDMC"
-      label="中文全拼">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWMC"
-      label="负责单位">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWQP"
-      label="应用系统">
-    </el-table-column>
-    <el-table-column
-      prop="CD"
-      label="分类定义">
-    </el-table-column>
-    <el-table-column
-      prop="LX"
-      label="数据库表">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXDY"
-      label="数据库表（原始）"
-      width="140">
+      label="是否关联">
     </el-table-column>
   </el-table>
 

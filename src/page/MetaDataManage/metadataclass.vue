@@ -134,8 +134,12 @@ export default {
     },
     async nodeclick(data) {
       // console.log("nodeclick");
-      // console.log(data.id);
+      // console.log(data);
       // console.log("end nodeclick");
+      // let id = 'GH';
+      // if(data){
+      //   id = data.id
+      // }
       const metaclass = await this.$Data.metaclass(data.id);
       this.upmetadataclass = metaclass.upclass;
       this.downmetadataclass = metaclass.downclass;
@@ -155,11 +159,12 @@ export default {
       }
     };
   },
-
-  mounted() {
+  mounted(){
     (async () => {
       const metaclasstree = await this.$Data.metaclasstree();
       this.treedata = metaclasstree;
+      // 默认加载
+      this.nodeclick(this.treedata[0]);
     })();
   }
 };

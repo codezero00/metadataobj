@@ -55,8 +55,8 @@ export default {
     metadatasearch: '元数据查询',
     //
     dwmanage: '数据仓库管理',
-    resource: '数据源配置',
-    createtable: '建库建表配置',
+    resource: '资源库管理',
+    createtable: '数据表管理',
     shareindex: '数据共享目录',
     //
     odsmanage:'前置库管理',

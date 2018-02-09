@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/page/login'
-<<<<<<< HEAD
 //
 import Layout from '@/page/layout/Layout'
 import home from '@/page/home'
@@ -52,16 +51,6 @@ import graphmodelmanage from '@/page/DataModelManage/graphmodelmanage'
 import modelstatistics from '@/page/DataModelManage/modelstatistics'
 import modellog from '@/page/DataModelManage/modellog'
 //
-=======
-import articlelist from '@/page/article/list.vue'
-import createarticle from '@/page/article/create.vue'
-import editarticle from '@/page/article/edit.vue'
-
-
-import Layout from '@/page/layout/Layout'
-import home from '@/page/home'
-
->>>>>>> 57cea8b6f3f4db93d8475423a5ab28c0bcfc6790
 Vue.use(Router)
 
 //所有权限通用路由表 
@@ -101,21 +90,21 @@ export const constrouterMap = [{
       }
     }]
   },
-  {
-    path: '/documentation',
-    component: Layout,
-    // redirect: '/documentation/index',
-    meta: {
-      title: 'documentation',
-      icon: 'documentation'
-    },
-    children: [
-      {path: 'list', component: articlelist,name: 'articlelist',meta: {title: 'articlelist',icon: 'documentation',noCache: false}},
-      {path: 'create', component: createarticle,name: 'createarticle',meta: {title: 'createarticle',icon: 'documentation',noCache: false}},
-      {path: 'edit', component: editarticle,name: 'editarticle',meta: {title: 'editarticle',icon: 'documentation',noCache: false}}
+  // {
+  //   path: '/documentation',
+  //   component: Layout,
+  //   // redirect: '/documentation/index',
+  //   meta: {
+  //     title: 'documentation',
+  //     icon: 'documentation'
+  //   },
+  //   children: [
+  //     {path: 'list', component: articlelist,name: 'articlelist',meta: {title: 'articlelist',icon: 'documentation',noCache: false}},
+  //     {path: 'create', component: createarticle,name: 'createarticle',meta: {title: 'createarticle',icon: 'documentation',noCache: false}},
+  //     {path: 'edit', component: editarticle,name: 'editarticle',meta: {title: 'editarticle',icon: 'documentation',noCache: false}}
       
-    ]
-  },
+  //   ]
+  // },
 
   {
     path: '/metadatamanage',

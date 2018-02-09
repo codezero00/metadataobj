@@ -1,6 +1,6 @@
 <template>
 <el-row type="flex" class="row-bg">
-  <el-col :span="4"><div class="grid-content left"> 
+  <el-col :span="6"><div class="grid-content left"> 
       <el-input
         placeholder="输入关键字进行过滤"
         v-model="filterText">
@@ -12,119 +12,88 @@
         :props="defaultProps"
         default-expand-all
         :filter-node-method="filterNode"
+        @node-click="nodeclick"
         ref="tree2">
       </el-tree>
     </div></el-col>
 
-  <el-col :span="20"><div class="grid-content right">
-    
-  <el-table
-    :data="upmetadataclass"
-    border
-    style="width: 100%">
-    <el-table-column
-      prop="ZYSXBH"
-      label="分类名称"
-      >
-    </el-table-column>
-    <el-table-column
-      prop="BZBM"
-      label="分类编码"
-      >
-    </el-table-column>
-    <el-table-column
-      prop="ZDMC"
-      label="是否资源项">
-    </el-table-column>
-    <el-table-column
-      prop="YSZDMC"
-      label="中文全拼">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWMC"
-      label="负责单位">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWQP"
-      label="应用系统">
-    </el-table-column>
-    <el-table-column
-      prop="CD"
-      label="分类定义">
-    </el-table-column>
-    <el-table-column
-      prop="LX"
-      label="数据库表">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXDY"
-      label="数据库表（原始）"
-      width="140">
-    </el-table-column>
-    <!-- <el-table-column
-      fixed="left"
-      label="操作"
-      width="90">
-      <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        <el-button type="text" size="small">编辑</el-button>
-      </template>
-    </el-table-column> -->
-  </el-table>
-  <div class='fltag'>
-    <h3>下级分类</h3>
-  </div>
-  <el-table
-    :data="downmetadataclass"
-    border
-    style="width: 100%">
-    <el-table-column
-      prop="ZYSXBH"
-      label="分类名称"
-      >
-    </el-table-column>
-    <el-table-column
-      prop="BZBM"
-      label="分类编码"
-      >
-    </el-table-column>
-    <el-table-column
-      prop="ZDMC"
-      label="是否资源项">
-    </el-table-column>
-    <el-table-column
-      prop="YSZDMC"
-      label="中文全拼">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWMC"
-      label="负责单位">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXZWQP"
-      label="应用系统">
-    </el-table-column>
-    <el-table-column
-      prop="CD"
-      label="分类定义">
-    </el-table-column>
-    <el-table-column
-      prop="LX"
-      label="数据库表">
-    </el-table-column>
-    <el-table-column
-      prop="ZYSXDY"
-      label="数据库表（原始）"
-      width="140">
-    </el-table-column>
-  </el-table>
+  <el-col :span="18">
+    <div class="grid-content right">
 
-    </div></el-col>
+  <div class='fltag'>
+    <h3>{{dbtabletitle.label}}</h3>
+  </div> 
+
+  <div v-if = 'dbtabletitle.isresource != 1'>
+
+    <el-table
+      :data="dbtablelist"
+      border
+      style="width: 100%">
+      <el-table-column
+        prop="BZWMC"
+        label="表中文名称"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="SSZYK"
+        label="所属资源库"
+        >
+      </el-table-column>
+      <el-table-column
+        prop="SJL"
+        label="数据量">
+      </el-table-column>
+      <el-table-column
+        prop="CJSJ"
+        label="创建时间">
+      </el-table-column>
+      <el-table-column
+        prop="ZHXGSJ"
+        label="修改时间">
+      </el-table-column>
+    </el-table>
+
+  </div>
+  <div v-else>
+
+    <el-card class="box-card">
+      <p>
+        <span>所属资源库:  {{dbtablelist[0].SSZYK}}</span>
+        <span style="margin-left:220px">表英文名称:  {{dbtablelist[0].BYWMC}}</span>
+        <span style="margin-left:220px">表中文名称:  {{dbtablelist[0].BZWMC}}</span>
+      </p>
+      <p>
+        <span>创建时间:{{dbtablelist[0].CJSJ}}</span>
+        <span style="margin-left:190px">最后修改时间:  {{dbtablelist[0].ZHXGSJ}}</span>
+      </p>
+      <p>
+        <span>描述:  {{dbtablelist[0].MS}}</span>
+      </p>
+
+    </el-card>
+
+    <el-tabs type="border-card">
+      <el-tab-pane label="表详情"><detail ref="detail" v-bind:current-list="dbtablecolumnlist"></detail></el-tab-pane>
+      <el-tab-pane label="表数据">配置管理</el-tab-pane>
+      <el-tab-pane label="数据交换">角色管理</el-tab-pane>
+    </el-tabs>
+
+
+  </div>
+
+    </div>
+  </el-col>
 </el-row>
 </template>
 
 <script>
+import detail from "./components/createtable/detail.vue";
+
 export default {
+  components: {
+    detail
+  },
   watch: {
     filterText(val) {
       this.$refs.tree2.filter(val);
@@ -135,11 +104,26 @@ export default {
     filterNode(value, data) {
       if (!value) return true;
       return data.label.indexOf(value) !== -1;
+    },
+    async nodeclick(data) {
+      if (data.isresource == 0) {
+        const dbtablelist = await this.$Data.dbtable();
+        this.dbtablelist = dbtablelist;
+      } else if (data.isresource == 1) {
+        const dbtablelist = await this.$Data.dbtable(data.id);
+        this.dbtablelist = dbtablelist;
+        const columnlist = await this.$Data.dbtablecolumn(data.id);
+        this.dbtablecolumnlist = columnlist;
+        this.dbtabletitle = data;
+      }
     }
   },
 
   data() {
     return {
+      dbtablecolumnlist: [],
+      dbtabletitle: [],
+      dbtablelist: [],
       filterText: "",
       treedata: [],
       defaultProps: {
@@ -151,15 +135,19 @@ export default {
 
   mounted() {
     (async () => {
-      const metadataclass = await this.$Data.metadataclass();
-      console.log(metadataclass);
-      this.treedata = metadataclass;
+      const dbtabletree = await this.$Data.dbtabletree();
+      this.treedata = dbtabletree;
+      // 默认加载
+      this.nodeclick(this.treedata[0]);
     })();
   }
 };
 </script>
 
 <style scoped>
+.box-card {
+  margin-bottom: 15px;
+}
 .el-row {
   margin-bottom: 20px;
   min-height: 800px;
@@ -179,18 +167,4 @@ export default {
 .right {
   margin: 0 15px 0 0;
 }
-/* .bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-} */
 </style>
