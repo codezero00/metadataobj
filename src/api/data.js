@@ -54,6 +54,11 @@ class Data {
     return api.get('dbtablecolumn',{'id':params})
   }
 
+  //dbtablecolumn
+  static etlclients(params){
+    return api.get('etlclients')
+  }
+
 }
 
 export default Data

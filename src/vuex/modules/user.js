@@ -41,18 +41,16 @@ const user = {
       async LoginByUsername({ commit }, userInfo) {
         const username = userInfo.username.trim()
         const passwd = userInfo.passwd.trim()
-        console.log(username)
-        console.log(passwd)
         const data = await Login.login(username,passwd)
+        console.log(data)
         return data
       },
   
       // 获取用户信息
       async GetUserInfo({ commit, state }) {
-        // debugger;
         const data = await Login.getuserinfo()
-        console.log('GetUserInfo')
-        console.log(data)
+        // console.log('GetUserInfo')
+        // console.log(data)
         if(data){
           commit('SET_ID',data.id)
           commit('SET_EMAIL',data.email)

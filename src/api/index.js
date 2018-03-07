@@ -55,7 +55,7 @@ class ax {
         console.log(res.data.data)
         return res.data.data
       } else if (res.data.failure) {
-        return res.data.failure
+        return res.data
       } else {
         console.log('error!!!!')
         console.log(res.data)
@@ -74,7 +74,7 @@ export default {
   get: (url, params, success, failure) => {
     return myax.apiAxios('GET', url, params)
   },
-  post: function (url, params, success, failure) {
+  post (url, params, success, failure) {
     return myax.apiAxios('POST', url, params, success, failure)
   },
   put: function (url, params, success, failure) {

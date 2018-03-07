@@ -23,7 +23,7 @@
               <el-button style="float:right; padding:0" type="text">忘记密码？</el-button>
             </div>
             <div class="loginbutton">
-              <el-button type="danger" :loading="loading" plain style="width:100%" @click='login'>登&nbsp&nbsp&nbsp陆</el-button>
+              <el-button type="danger" :loading="loading" plain style="width:100%" @click='login("loginform")'>登&nbsp&nbsp&nbsp陆</el-button>
             </div>
           </div>
           <div class="loginfooter">
@@ -48,16 +48,27 @@ export default {
   components: {  },
   data() {
     //表单验证规则 B
+    // const validateUsername = async (rule, value, callback) => {
+    //   if (!isvalidUsername(value)) {
+    //     await new Error("请输入正确的用户名");
+    //   } else {
+    //     callback();
+    //   }
+    // };
+
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error("请输入正确的用户名"));
+      console.log('测试')
+      console.log(value)
+      if (!value) {
+        callback(new Error("账号不能为空"));
       } else {
         callback();
       }
     };
+
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error("密码不能小于6位"));
+      if (value.length < 3) {
+        callback(new Error("密码不能小于3位"));
       } else {
         callback();
       }
@@ -70,7 +81,7 @@ export default {
         username: [
           { required: true, trigger: "blur", validator: validateUsername }
         ],
-        password: [
+        passwd: [
           { required: true, trigger: "blur", validator: validatePassword }
         ]
       },
@@ -82,28 +93,40 @@ export default {
     };
   },
   methods: {
-    async login() {
+    login(formName) {
       // setToken('sfsgasega')
       // getToken()
-      this.loading = true;
-      console.log(this.loginform);
-      try{
-        const udata = await this.$store.dispatch("LoginByUsername", this.loginform);
-        console.log('login begin');
-        console.log(udata);
-        if(udata){
-          this.loading = false;
-          this.$router.push({ path: "/home" });
+      this.$refs[formName].validate(async (valid) => {
+        if(valid){
+          this.loading = true;
+          // console.log(this.loginform);
+          // try{
+          const udata = await this.$store.dispatch("LoginByUsername", this.loginform);
+
+          if(udata.failure){
+            this.loading = false;
+            this.$message.error(udata.failure);
+          } else {
+            this.$router.push({ path: "/home" });
+          }
+          // if(udata && !udata.failure){
+          //   this.loading = false;
+          //   this.$router.push({ path: "/home" });
+          // } else {
+          //   this.loading = false;
+          //   console.log('test111')
+          //   this.$message.error(udata.failure);
+          // }
+          // }
+          // catch(err){
+          //   console.log(err)
+          //   this.$message.error(err);
+          // }
+        } else {
+          return false
         }
-      }
-      catch(err){
-        console.log(err)
-      }
-      // .then(() => {
-      //   this.loading = false;
-      //   this.$router.push({ path: "/" });
-      // })
-      // .catch();
+      });
+
     }
   }
 };
