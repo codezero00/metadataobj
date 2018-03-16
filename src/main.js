@@ -20,9 +20,9 @@ Vue.prototype.$echarts = echarts
 import store from './vuex/index' //vuex
 
 
-import api from './api/index' // 引用API文件
+import request from './utils/request' // 引用API文件
 import data from './api/data' // 引用API文件
-Vue.prototype.$api = api // 将API方法绑定到全局
+Vue.prototype.$api = request // 将API方法绑定到全局
 Vue.prototype.$Data = data // 将API方法绑定到全局
 
 

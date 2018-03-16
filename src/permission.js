@@ -1,18 +1,16 @@
 import router, {asyncrouterMap} from './router'
 import store from './vuex/index'
-import api from './api/index'
+// import api from './api/index'
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css' // Progress 进度条样式
-import {getToken} from '@/helper/auth'
-import home from '@/page/home'
+import {getToken} from '@/utils/auth'
+import home from '@/view/home'
 
 
 // register global progress.
 const whiteList = ['/login', '/'] // 不重定向白名单
 router.beforeEach(async(to, from, next) => {
   NProgress.start() // 开启Progress
-  console.log('to.path')
-  console.log(to.path)
   if (getToken()) { // 判断是否有token
     if (to.path === '/login') {
       next({
@@ -21,25 +19,16 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done() // router在hash模式下 手动改变hash 重定向回来 不会触发afterEach 暂时hack方案 ps：history模式下无问题，可删除该行！
     } else {
       let x = store.state.user.admin.toString() //由于vuex 使用了 modules 这里需要把模块user路径带入
-      // console.log('vuex begin')
-      // console.log(x)
-      // console.log(store.state.user.admin.toString())
-      // console.log(x.length)
       if (x.length === 0) { // 判断当前用户是否已拉取完user_info信息 number不能使用length
         try{
           const res = await store.dispatch('GetUserInfo')
           const roles = res.admin
           if (roles === 0) {
-            // debugger;
-            // console.log('begin routes')
-            // console.log(asyncrouterMap)
             router.addRoutes(asyncrouterMap)
-            // console.log(...to)
             next(to.path) //重新跳转本面保障 x.length ！= 0 跳转到else
           }
         }
         catch(err){
-          // console.log(' await error')
           next({ path: '/login' })
         }
 

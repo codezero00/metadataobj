@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import tableArticle from "@/components/home/tableArticle.vue";
+import tableArticle from "@/components/del_20180316/home/tableArticle.vue";
 export default {
   name: "articlelist",
   components: { tableArticle }

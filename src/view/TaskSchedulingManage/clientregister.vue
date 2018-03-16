@@ -21,23 +21,32 @@
     <el-table-column
       prop="KHDMC"
       label="客户端名称"
+      width="150"
       >
     </el-table-column>
     <el-table-column
       prop="IPDZ"
-      label="IP地址">
+      label="IP地址"
+      width="100"
+      >
     </el-table-column>
     <el-table-column
       prop="SYDK"
-      label="使用端口">
+      label="使用端口"
+      width="100"
+      >
     </el-table-column>
     <el-table-column
       prop="URL"
-      label="URL">
+      label="URL"
+      width="200"
+      >
     </el-table-column>
     <el-table-column
       prop="BB"
-      label="版本">
+      label="版本"
+      width="50"
+      >
     </el-table-column>
     <el-table-column
       prop="WZ"

@@ -109,6 +109,8 @@ export default {
       if (data.isresource == 0) {
         const dbtablelist = await this.$Data.dbtable();
         this.dbtablelist = dbtablelist;
+        console.log("dbtablelist")
+        console.log(dbtablelist)
       } else if (data.isresource == 1) {
         const dbtablelist = await this.$Data.dbtable(data.id);
         this.dbtablelist = dbtablelist;

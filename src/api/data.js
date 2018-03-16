@@ -1,4 +1,4 @@
-import api from './index'
+import request from '@/utils/request'
 
 //写具体业务查询语句
 class Data {
@@ -7,56 +7,56 @@ class Data {
 
   static weekgaplist() {
     // console.log(user + passwd)
-    return api.get('10')
+    return request.get('10')
   }
 
   static gapdetaillist(params) {
-    return api.post('11', {'sharecode':params})
+    return request.post('11', {'sharecode':params})
   }
 
   static metagroup() {
     //console.log(user + passwd)
-    return api.get('metagroup')
+    return request.get('metagroup')
   }
 
   //metaclasstree
   static metaclasstree(){
-    return api.get('metaclasstree')
+    return request.get('metaclasstree')
   }
 
   //metaclass
   static metaclass(params){
-    return api.get('metaclass',{'id':params})
+    return request.get('metaclass',{'id':params})
   }
 
   //metadatadetail
   static metadatadetail(params){
-    return api.get('metadata',{'id':params})
+    return request.get('metadata',{'id':params})
   }
 
   //dbmanage
   static dbmanage(){
-    return api.get('dbmanage')
+    return request.get('dbmanage')
   }
 
   //dbtabletree
   static dbtabletree(){
-    return api.get('dbtabletree')
+    return request.get('dbtabletree')
   }
 
   //dbtable
   static dbtable(params){
-    return api.get('dbtable',{'id':params})
+    return request.get('dbtable',{'id':params})
   }
 
   //dbtablecolumn
   static dbtablecolumn(params){
-    return api.get('dbtablecolumn',{'id':params})
+    return request.get('dbtablecolumn',{'id':params})
   }
 
   //dbtablecolumn
   static etlclients(params){
-    return api.get('etlclients')
+    return request.get('etlclients')
   }
 
 }

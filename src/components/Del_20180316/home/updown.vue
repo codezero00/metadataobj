@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import UploadExcelComponent from "../helper/uploadxlsx";
+import UploadExcelComponent from "../utils/uploadxlsx";
 
 export default {
   components: { UploadExcelComponent },

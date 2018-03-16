@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { generateTitle } from '@/helper/i18n'
+import { generateTitle } from '@/utils/i18n'
 
 export default {
   created() {

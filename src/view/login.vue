@@ -40,8 +40,8 @@
 
 <script>
 
-import { setToken,getToken } from "@/helper/auth";
-import { isvalidUsername } from "@/helper/check";
+import { setToken,getToken } from "@/utils/auth";
+import { isvalidUsername } from "@/utils/check";
 
 export default {
   name: "detailpage",
@@ -107,6 +107,7 @@ export default {
             this.loading = false;
             this.$message.error(udata.failure);
           } else {
+            console.log("else")
             this.$router.push({ path: "/home" });
           }
           // if(udata && !udata.failure){

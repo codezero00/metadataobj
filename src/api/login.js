@@ -1,4 +1,4 @@
-import api from './index'
+import request from '@/utils/request'
 
 //写具体业务查询语句
 class Login {
@@ -7,14 +7,14 @@ class Login {
 
   static login(user, passwd) {
     // console.log(user + passwd)
-    return api.get('login', {
+    return request.get('login', {
       'email': user,
       'passwd': passwd
     })
   }
 
   static getuserinfo() {
-    return api.get('userinfo', null)
+    return request.get('userinfo', null)
   }
 
 }
