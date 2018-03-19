@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <el-container>
-    <el-main style="height:475px;">
+
+    <div class="main" style="height:475px;">
         <!-- <div class="loginbox"> -->
           <el-form :model="loginform" status-icon :rules="loginRules" ref="loginform" class="loginbox">
           <div class="loginheader">
@@ -32,9 +32,9 @@
           </div>
           </el-form>
         <!-- </div> -->
-    </el-main>
-    <el-footer style="height: 220px;"></el-footer>
-    </el-container>
+    </div>
+    <div class="footer" style="height: 220px;"></div>
+
   </div>
 </template>
 
@@ -134,13 +134,13 @@ export default {
 </script>
 
 <style scoped>
-.el-header {
+.header {
   background-color: black;
   color: #333;
   text-align: center;
   line-height: 60px;
 }
-.el-footer {
+.footer {
   background-color: #7d7d7d;
   color: #333;
   text-align: center;
