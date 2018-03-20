@@ -11,7 +11,9 @@ import home from '@/view/home'
 const whiteList = ['/login', '/'] // 不重定向白名单
 router.beforeEach(async(to, from, next) => {
   NProgress.start() // 开启Progress
-  if (getToken()) { // 判断是否有token
+  // if (getToken()) { // 判断是否有token
+
+  if (true) { // 暂时取消登陆
     if (to.path === '/login') {
       next({
         path: '/home'

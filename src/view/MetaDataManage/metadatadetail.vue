@@ -218,7 +218,7 @@ export default {
       const metaclass = await this.$Data.metaclass(data.id);
       this.upmetadataclass = metaclass.upclass;
       this.downmetadataclass = metaclass.downclass;
-      if(data.isresource===1){
+      if(Number(data.isresource)===1){
         const metadata = await this.$Data.metadatadetail(data.id);  
         console.log('METADATA') 
         console.log(metadata)
