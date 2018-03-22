@@ -14,6 +14,7 @@
         :default-expanded-keys="['GH']"
         :filter-node-method="filterNode"
         @node-click="nodeclick"
+        :render-content="renderContent"
         ref="tree2">
       </el-tree>
     </div></el-col>
@@ -144,6 +145,45 @@ export default {
       this.upmetadataclass = metaclass.upclass;
       this.downmetadataclass = metaclass.downclass;
       // console.log(this.downmetadataclass.length);
+    },
+
+    append(data) {
+      // const newChild = { id: id++, label: "testtest", children: [] };
+      // if (!data.children) {
+      //   this.$set(data, "children", []);
+      // }
+      // data.children.push(newChild);
+      
+    },
+    remove(node, data) {
+      // const parent = node.parent;
+      // const children = parent.data.children || parent.data;
+      // const index = children.findIndex(d => d.id === data.id);
+      // children.splice(index, 1);
+    },
+
+    renderContent(h, { node, data, store }) {
+      return (
+        <span class="custom-tree-node">
+          <span>{node.label}</span>
+          <span>
+            <el-button
+              style="color:#909399;margin-left:5px"
+              type="text"
+              on-click={() => this.append(data)}
+            >
+            <svg-icon icon-class="plus"/>
+            </el-button>
+            <el-button
+              style="color:#909399;margin-left:0px"
+              type="text"
+              on-click={() => this.remove(node, data)}
+            >
+            <svg-icon icon-class="del"/>
+            </el-button>
+          </span>
+        </span>
+      );
     }
   },
 
@@ -159,7 +199,7 @@ export default {
       }
     };
   },
-  mounted(){
+  mounted() {
     (async () => {
       const metaclasstree = await this.$Data.metaclasstree();
       this.treedata = metaclasstree;
@@ -190,9 +230,6 @@ export default {
 .right {
   margin: 0 15px 0 0;
 }
-</style>
-
-<style>
 .filter-tree {
   font-size: 13px;
 }
