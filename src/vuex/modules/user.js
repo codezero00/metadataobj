@@ -49,8 +49,8 @@ const user = {
       // 获取用户信息
       async GetUserInfo({ commit, state }) {
         const data = await Login.getuserinfo()
-        // console.log('GetUserInfo')
-        // console.log(data)
+        console.log('GetUserInfo')
+        console.log(data)
         if(data){
           commit('SET_ID',data.id)
           commit('SET_EMAIL',data.email)
