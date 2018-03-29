@@ -14,7 +14,7 @@
         :default-expanded-keys="['GH']"
         :filter-node-method="filterNode"
         @node-click="nodeclick"
-        :render-content="renderContent"
+        :expand-on-click-node="false"
         ref="tree2">
       </el-tree>
     </div>
@@ -69,18 +69,34 @@
 
   <div v-if = "metadatadetail.length!=0">
       <div class='fltag'>
-        <h3>资源属性</h3>
+          <h3 style="float:left;">资源属性</h3>
+
+          <el-button type="primary" style="float:left;margin:12px 0 0 20px" size="small" icon="el-icon-plus">添加</el-button>
+          <el-button type="primary" style="float:left;margin:12px 0 0 5px;" size="small" icon="el-icon-upload">导入</el-button>
+          <el-button type="primary" style="float:left;margin:12px 0 0 5px;" size="small" icon="el-icon-download">导出</el-button>
+          <el-input placeholder="请输入搜索内容" v-model="input3" style="float:left;width:200px;margin:12px 0 0 5px;" size="small">
+          <el-button slot="append" icon="el-icon-search"></el-button>
+          </el-input>
+
       </div>
       <el-table
         :data="metadatadetail"
         border
-        style="width: 100%">
+        fit
+        style="width: 100%;">
         <el-table-column
           label="操作"
-          min-width="100">
+          min-width="60">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+
+            <el-button @click="handleClick(scope.row)" type="text" size="small">
+              <svg-icon icon-class="update" />
+            </el-button>
+
+            <el-button style="margin-left:0px;" type="text" size="small">
+              <svg-icon icon-class="del" />
+            </el-button>
+
           </template>
         </el-table-column>
 
@@ -225,47 +241,10 @@ export default {
         console.log(metadata)
         this.metadatadetail = metadata   
       }
-    },
-
-    append(data) {
-      // const newChild = { id: id++, label: "testtest", children: [] };
-      // if (!data.children) {
-      //   this.$set(data, "children", []);
-      // }
-      // data.children.push(newChild);
-      
-    },
-    remove(node, data) {
-      // const parent = node.parent;
-      // const children = parent.data.children || parent.data;
-      // const index = children.findIndex(d => d.id === data.id);
-      // children.splice(index, 1);
-    },
-
-    renderContent(h, { node, data, store }) {
-      return (
-        <span class="custom-tree-node">
-          <span>{node.label}</span>
-          <span>
-            <el-button
-              style="color:#909399;margin-left:5px"
-              type="text"
-              on-click={() => this.append(data)}
-            >
-            <svg-icon icon-class="plus"/>
-            </el-button>
-            <el-button
-              style="color:#909399;margin-left:0px"
-              type="text"
-              on-click={() => this.remove(node, data)}
-            >
-            <svg-icon icon-class="del"/>
-            </el-button>
-          </span>
-        </span>
-      );
+      else {
+        this.metadatadetail = ''
+      }
     }
-
   },
 
   data() {
@@ -300,7 +279,7 @@ export default {
 }
 .el-row {
   margin-bottom: 20px;
-  min-height: 800px;
+  min-height: 500px;
   padding: 10px 0;
 }
 .el-col {
@@ -313,6 +292,7 @@ export default {
 .fltag {
   margin-bottom: 20px;
   border-bottom: #d3dce6 solid 1px;
+  /* float: left; */
 }
 .right {
   margin: 0 15px 0 0;

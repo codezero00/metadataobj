@@ -3,7 +3,7 @@
   <el-col :span="24"><div class="grid-content right">
 
   <div class='fltag'>
-    <h3>资源库</h3>
+    <h3>前置库管理</h3>
   </div>
   <el-table
     :data="dbmanagedata"
@@ -70,7 +70,7 @@ export default {
 <style scoped>
 .el-row {
   margin-bottom: 20px;
-  min-height: 800px;
+  min-height: 500px;
   padding: 10px 0;
 }
 .el-col {

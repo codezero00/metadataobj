@@ -13,8 +13,8 @@
       label="操作"
       width="150">
       <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="" size="small">查看</el-button>
-        <el-button type="danger" size="small">编辑</el-button>
+        <el-button type="" size="small">编辑</el-button>
+        <el-button type="danger" size="small">删除</el-button>
       </template>
     </el-table-column>
 
@@ -97,7 +97,7 @@ export default {
 <style scoped>
 .el-row {
   margin-bottom: 20px;
-  min-height: 800px;
+  min-height: 500px;
   padding: 10px 0;
 }
 .el-col {
@@ -114,5 +114,10 @@ export default {
 .right {
   margin: 0 15px 0 15px;
 }
-
+.btn_fro{
+  margin-left:10px;
+}
+.btn_beh{
+  margin-left:5px;
+}
 </style>

@@ -23,8 +23,8 @@ function filterNull(o) {
 
 class ax {
   constructor() {
-    //this.root = 'http://127.0.0.1:9000'
-    this.root = 'http://10.103.3.110/api/v1'
+    this.root = 'http://127.0.0.1:9000/api/v1'
+    //this.root = 'http://10.103.3.110/api/v1'
     //this.root = '/api/v1'
     this.config = {} //写入config信息
   }

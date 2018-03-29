@@ -3,7 +3,7 @@
   <el-col :span="24"><div class="grid-content right">
 
   <div class='fltag'>
-    <h3>作业管理</h3>
+    <h3>数据表管理</h3>
   </div>
   <el-table
     :data="dbmanagedata"
@@ -20,30 +20,28 @@
 
     <el-table-column
       prop="XMMC"
-      label="作业编号"
+      label="项目名称"
       >
     </el-table-column>
     <el-table-column
       prop="SJLYDW"
-      label="作业名称">
+      label="数据来源单位">
     </el-table-column>
     <el-table-column
       prop="CJDW"
-      label="作业描述">
+      label="承建单位">
     </el-table-column>
     <el-table-column
       prop="LXR"
-      label="最后日志日期">
+      label="联系人">
+    </el-table-column>
+    <el-table-column
+      prop="LXFS"
+      label="联系方式">
     </el-table-column>
     <el-table-column
       prop="ZT"
-      label="状态"
-      width="100">
-      <template slot-scope="scope">
-        <el-tag
-          :type="scope.row.ZT === '可用' ? 'primary' : 'success'"
-          close-transition>{{scope.row.ZT}}</el-tag>
-      </template>
+      label="状态">
     </el-table-column>
   </el-table>
 

@@ -55,8 +55,11 @@ export default {
     metadatasearch: '元数据查询',
     //
     dwmanage: '数据仓库管理',
-    resource: '资源库管理',
-    createtable: '数据表管理',
+    FrontDatabaseManage: '前置库管理',
+    ResourceAndLayer: '资源库和分层',
+    DataTableManage: '数据表管理',
+    ResourceIndex: '数据资源目录',
+    LayerIndex: '数据分层展示',
     shareindex: '数据共享目录',
     //
     odsmanage:'前置库管理',

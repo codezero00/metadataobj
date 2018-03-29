@@ -162,7 +162,7 @@ export default {
 <style scoped>
 .el-row {
   margin-bottom: 20px;
-  min-height: 800px;
+  min-height: 500px;
   padding: 10px 0;
 }
 .el-col {

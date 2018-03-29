@@ -13,9 +13,12 @@ import metadataclass from '@/view/MetaDataManage/metadataclass.vue'
 import metadatadetail from '@/view/MetaDataManage/metadatadetail.vue'
 import metadatasearch from '@/view/MetaDataManage/metadatasearch.vue'
 //
-import createtable from '@/view/DWManage/createtable.vue'
-import resource from '@/view/DWManage/resource.vue'
-import shareindex from '@/view/DWManage/shareindex.vue'
+import FrontDatabaseManage from '@/view/DWManage/FrontDatabaseManage.vue'  // 前置库
+import ResourceAndLayer from '@/view/DWManage/ResourceAndLayer.vue'  // 资源库与分层
+import DataTableManage from '@/view/DWManage/DataTableManage.vue'  // 数据表管理
+import ResourceIndex from '@/view/DWManage/ResourceIndex.vue' // 资源目录
+import LayerIndex from '@/view/DWManage/LayerIndex.vue' // 分层目录
+import shareindex from '@/view/DWManage/shareindex.vue' // 共享目录
 //
 import odsregister from '@/view/ODSManage/odsregister.vue'
 import odsdelete from '@/view/ODSManage/odsdelete.vue'
@@ -117,7 +120,7 @@ export const constrouterMap = [{
     children: [
       {path: 'class', component: metadataclass,name: 'metadataclass',meta: {title: 'metadataclass',icon: 'documentation',noCache: false}},
       {path: 'detail', component: metadatadetail,name: 'metadatadetail',meta: {title: 'metadatadetail',icon: 'documentation',noCache: false}},
-      {path: 'search', component: metadatasearch,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
+      // {path: 'search', component: metadatasearch,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
       
     ]
   },
@@ -131,26 +134,32 @@ export const constrouterMap = [{
       icon: 'documentation'
     },
     children: [
-      {path: 'resource', component: resource,name: 'resource',meta: {title: 'resource',icon: 'documentation',noCache: false}},
-      {path: 'createtable', component: createtable,name: 'createtable',meta: {title: 'createtable',icon: 'documentation',noCache: false}},
+      {path: 'FrontDatabaseManage', component: FrontDatabaseManage,name: 'FrontDatabaseManage',meta: {title: 'FrontDatabaseManage',icon: 'documentation',noCache: false}},
+      
+      {path: 'ResourceAndLayer', component: ResourceAndLayer,name: 'ResourceAndLayer',meta: {title: 'ResourceAndLayer',icon: 'documentation',noCache: false}},
+      {path: 'DataTableManage', component: DataTableManage,name: 'DataTableManage',meta: {title: 'DataTableManage',icon: 'documentation',noCache: false}},
+
+      {path: 'ResourceIndex', component: ResourceIndex,name: 'ResourceIndex',meta: {title: 'ResourceIndex',icon: 'documentation',noCache: false}},
+      {path: 'LayerIndex', component: LayerIndex,name: 'LayerIndex',meta: {title: 'LayerIndex',icon: 'documentation',noCache: false}},
+
       {path: 'shareindex', component: shareindex,name: 'shareindex',meta: {title: 'shareindex',icon: 'documentation',noCache: false}}
       
     ]
   },
 
-  {
-    path: '/odsmanage',
-    component: Layout,
-    // redirect: '/documentation/index',
-    meta: {
-      title: 'odsmanage',
-      icon: 'documentation'
-    }, 
-    children: [
-      {path: 'odsregister', component: odsregister, name: 'odsregister', meta: {title: 'odsregister',icon: 'documentation',noCache: false}},
-      {path: 'odsdelete', component: odsdelete, name: 'odsdelete', meta: {title: 'odsdelete',icon: 'documentation',noCache: false}}, 
-    ]
-  },
+  // {
+  //   path: '/odsmanage',
+  //   component: Layout,
+  //   // redirect: '/documentation/index',
+  //   meta: {
+  //     title: 'odsmanage',
+  //     icon: 'documentation'
+  //   }, 
+  //   children: [
+  //     {path: 'odsregister', component: odsregister, name: 'odsregister', meta: {title: 'odsregister',icon: 'documentation',noCache: false}},
+  //     {path: 'odsdelete', component: odsdelete, name: 'odsdelete', meta: {title: 'odsdelete',icon: 'documentation',noCache: false}}, 
+  //   ]
+  // },
 
   {
     path: '/taskschedulingmanage',
@@ -163,8 +172,8 @@ export const constrouterMap = [{
     children: [
       {path: 'clientregister', component: clientregister, name: 'clientregister', meta: {title: 'clientregister',icon: 'documentation',noCache: false}},
       {path: 'jobmanage', component: jobmanage, name: 'jobmanage', meta: {title: 'jobmanage',icon: 'documentation',noCache: false}}, 
-      {path: 'jobmonitoring', component: jobmonitoring, name: 'jobmonitoring', meta: {title: 'jobmonitoring',icon: 'documentation',noCache: false}}, 
-      {path: 'joblog', component: joblog, name: 'joblog', meta: {title: 'joblog',icon: 'documentation',noCache: false}}, 
+      //{path: 'jobmonitoring', component: jobmonitoring, name: 'jobmonitoring', meta: {title: 'jobmonitoring',icon: 'documentation',noCache: false}}, 
+      //{path: 'joblog', component: joblog, name: 'joblog', meta: {title: 'joblog',icon: 'documentation',noCache: false}}, 
     ]
   },
 
