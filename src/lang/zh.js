@@ -1,6 +1,6 @@
 export default {
   route: {
-    dashboard: '首页',
+    dashboard: '系统维护子系统',
     introduction: '简述',
     documentation: '文档',
     permission: '权限测试页',
@@ -57,6 +57,8 @@ export default {
     dwmanage: '数据仓库管理',
     FrontDatabaseManage: '前置库管理',
     ResourceAndLayer: '资源库和分层',
+    ResourceManage: '资源库管理',
+    LayerManage: '数据分层管理',
     DataTableManage: '数据表管理',
     ResourceIndex: '数据资源目录',
     LayerIndex: '数据分层展示',

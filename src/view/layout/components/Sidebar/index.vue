@@ -1,6 +1,9 @@
 <template>
   <scroll-bar>
     <el-menu mode="vertical" :default-active="$route.path" :collapse="isCollapse" background-color="#304156" text-color="#fff" active-text-color="#409EFF">
+      <div class="nav-log">
+				<span v-show="log==1">武汉市智慧城管</span>
+			</div>
       <sidebar-item :routes="routers1"></sidebar-item>
     </el-menu>
   </scroll-bar>
@@ -27,7 +30,10 @@ export default {
       //       debugger;
       // console.log(this.$store.state.permission.routers)
       return !this.sidebar.opened
-    }
+    },
+    log(){
+				return this.$store.state.app.sidebar.opened
+		}
   }
 }
 </script>

@@ -2,50 +2,101 @@
 <el-row type="flex" class="row-bg">
   <el-col :span="24"><div class="grid-content right">
 
-  <div class='fltag'>
-    <h3>作业管理</h3>
-  </div>
-  <el-table
-    :data="dbmanagedata"
-    border
-    style="width: 100%">
-    <el-table-column
-      label="操作"
-      width="150">
-      <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="" size="small">查看</el-button>
-        <el-button type="danger" size="small">编辑</el-button>
-      </template>
-    </el-table-column>
 
+      <div class="tab">
+        <div class="tab_header">
+          <el-button type="primary" class="fb-btn" icon="el-icon-plus">添加</el-button>
+          <el-button type="primary" class="fb-btn" icon="el-icon-edit">编辑</el-button>
+          <el-button type="warning" @click="del" class="fb-btn" icon="el-icon-delete">删除</el-button>
+          <el-button type="success" class="fb-btn" icon="el-icon-upload">导入</el-button>
+          <el-button type="success" class="fb-btn" icon="el-icon-download">导出</el-button>
+        </div>
+        <div class="tab_main">
+          <el-table
+            :data="etljobsdata"
+            border
+            stripe
+            height=450
+            style="width: 100%"
+            >
+            <el-table-column
+              type="selection"
+              width="55"
+              align=center
+              >
+            </el-table-column>
     <el-table-column
-      prop="XMMC"
+      prop="jobnum"
       label="作业编号"
+      sortable
+      align=center
       >
     </el-table-column>
     <el-table-column
-      prop="SJLYDW"
-      label="作业名称">
+      prop="name"
+      label="作业名称"
+      sortable
+      align=center
+      >
     </el-table-column>
     <el-table-column
-      prop="CJDW"
-      label="作业描述">
+      prop="remark"
+      label="作业描述"
+      sortable
+      align=center
+      >
     </el-table-column>
     <el-table-column
-      prop="LXR"
-      label="最后日志日期">
+      prop="clientname"
+      label="子服务器"
+      width="80"
+      sortable
+      align=center
+      >
     </el-table-column>
     <el-table-column
-      prop="ZT"
+      prop="url"
+      label="URL"
+      width="200"
+      sortable
+      align=center
+      >
+    </el-table-column>
+    <el-table-column
+      prop="createtime"
+      label="创建时间"
+      sortable
+      align=center
+      >
+    </el-table-column>
+    <el-table-column
       label="状态"
-      width="100">
+      width="100"
+      sortable
+      align=center
+      >
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.ZT === '可用' ? 'primary' : 'success'"
-          close-transition>{{scope.row.ZT}}</el-tag>
+          :type="scope.row.status === 'Running' ? 'success' : 'danger'"
+          close-transition>{{scope.row.status}}</el-tag>
       </template>
     </el-table-column>
-  </el-table>
+
+          </el-table>
+        </div>
+        <div class="tab_footer">
+          <el-pagination
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size="10"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400">
+          </el-pagination>
+        </div>
+      </div>
 
     </div></el-col>
 </el-row>
@@ -55,16 +106,23 @@
 export default {
   data() {
     return {
-      dbmanagedata: []
+      etljobsdata: []
     };
   },
 
   mounted() {
-    (async () => {
-      const dbmanage = await this.$Data.dbmanage();
-      console.log(dbmanage)
-      this.dbmanagedata = dbmanage;
-    })();
+    this.getjobs();
+    // (async () => {
+    //   const dbmanage = await this.$Data.dbmanage();
+    //   console.log(dbmanage)
+    //   this.dbmanagedata = dbmanage;
+    // })();
+  },
+  methods:{
+    async getjobs(){
+      const etljobs = await this.$Data.etljobs();
+      this.etljobsdata = etljobs;
+    }
   }
 };
 </script>
@@ -85,6 +143,7 @@ export default {
 .fltag {
   margin-bottom: 20px;
   border-bottom: #d3dce6 solid 1px;
+  height: 45px;
 }
 .right {
   margin: 0 15px 0 15px;

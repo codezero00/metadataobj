@@ -1,19 +1,19 @@
 <template>
+<div>
 <el-row type="flex" class="row-bg">
-  <el-col :span="24">
-    <div class="grid-content right">
+  <el-col :span="24"><div class="grid-content right">
 
       <div class="tab">
         <div class="tab_header">
           <el-button type="primary" class="fb-btn" icon="el-icon-plus">添加</el-button>
           <el-button type="primary" class="fb-btn" icon="el-icon-edit">编辑</el-button>
-          <el-button type="warning" @click="del" class="fb-btn" icon="el-icon-delete">删除</el-button>
+          <el-button type="warning" class="fb-btn" icon="el-icon-delete">删除</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-upload">导入</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-download">导出</el-button>
         </div>
         <div class="tab_main">
           <el-table
-            :data="FrontBaseData"
+            :data="DataLayerData"
             border
             stripe
             height=450
@@ -29,35 +29,16 @@
 
             <el-table-column
               prop="name"
-              label="名称"
+              label="所属层名称"
+              width="150"
               sortable
               align=center
               >
             </el-table-column>
             <el-table-column
-              prop="ip"
-              label="IP"
-              sortable
-              align=center
-              >
-            </el-table-column>
-            <el-table-column
-              prop="usesoftware"
-              label="使用软件"
-              sortable
-              align=center
-              >
-            </el-table-column>
-            <el-table-column
-              prop="location"
-              label="位置"
-              sortable
-              align=center
-              >
-            </el-table-column>
-            <el-table-column
-              prop="dept"
-              label="所属部门"
+              prop="shortname"
+              label="简称"
+              width="80"
               sortable
               align=center
               >
@@ -97,39 +78,36 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="currentPage"
-            :page-sizes="[10, 20, 30, 40]"
-            :page-size="10"
+            :page-sizes="[1, 2, 3, 4]"
+            :page-size="1"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+            :total="this.DataLayerData.length">
           </el-pagination>
         </div>
       </div>
 
-      </div>
-    </el-col>
+    </div></el-col>
 </el-row>
+</div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      FrontBaseData: []
+      DataLayerData: [],
+      currentPage: 1
     };
   },
 
   mounted() {
-    this.GetFrontBase();
-    // (async () => {
-    //   const dbmanage = await this.$Data.dbmanage();
-    //   console.log(dbmanage)
-    //   this.dbmanagedata = dbmanage;
-    // })();
+    this.GetDataLayer();
   },
-  methods: {
-    async GetFrontBase() {
-      const FrontBase = await this.$Data.FrontBase();
-      this.FrontBaseData = FrontBase;
+
+  methods:{
+    async GetDataLayer(){
+      const DataLayer = await this.$Data.DataLayer(); 
+      this.DataLayerData = DataLayer;
     },
     del() {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {
@@ -157,9 +135,8 @@ export default {
 <style scoped>
 .el-row {
   margin-bottom: 20px;
-  min-height: 500px;
+  height: 333px;
   padding: 10px 0;
-    /* background-color: #f2f2f2; */
 }
 .el-col {
   border-radius: 4px;

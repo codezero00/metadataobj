@@ -24,32 +24,32 @@
     <h3>{{dbtabletitle.label}}</h3>
   </div> 
 
-  <div v-if = 'dbtabletitle.isresource != 1'>
+  <div v-if = 'dbtabletitle.isresource == 0'>
 
     <el-table
       :data="dbtablelist"
       border
       style="width: 100%">
       <el-table-column
-        prop="BZWMC"
+        prop="tablenamezw"
         label="表中文名称"
         >
       </el-table-column>
       <el-table-column
-        prop="SSZYK"
+        prop="resname"
         label="所属资源库"
         >
       </el-table-column>
       <el-table-column
-        prop="SJL"
-        label="数据量">
+        prop="dlname"
+        label="所属层">
       </el-table-column>
       <el-table-column
-        prop="CJSJ"
+        prop="createtime"
         label="创建时间">
       </el-table-column>
       <el-table-column
-        prop="ZHXGSJ"
+        prop="updatetime"
         label="修改时间">
       </el-table-column>
     </el-table>
@@ -59,16 +59,19 @@
 
     <el-card class="box-card">
       <p>
-        <span>所属资源库:  {{dbtablelist[0].SSZYK}}</span>
-        <span style="margin-left:220px">表英文名称:  {{dbtablelist[0].BYWMC}}</span>
-        <span style="margin-left:220px">表中文名称:  {{dbtablelist[0].BZWMC}}</span>
+        <span>所属资源库:  {{dbtabletitle.resname}}</span>
+        <span style="margin-left:220px">所属数据层:  {{dbtabletitle.dlname}}</span>
       </p>
       <p>
-        <span>创建时间:{{dbtablelist[0].CJSJ}}</span>
-        <span style="margin-left:190px">最后修改时间:  {{dbtablelist[0].ZHXGSJ}}</span>
+        <span>表英文名称:  {{dbtabletitle.tablenameyw}}</span>
+        <span style="margin-left:220px">表中文名称:  {{dbtabletitle.tablenamezw}}</span>
       </p>
       <p>
-        <span>描述:  {{dbtablelist[0].MS}}</span>
+        <span>创建时间:{{dbtabletitle.createtime}}</span>
+        <span style="margin-left:190px">最后修改时间:  {{dbtabletitle.updatetime}}</span>
+      </p>
+      <p>
+        <span>描述:  {{dbtabletitle.remark}}</span>
       </p>
 
     </el-card>
@@ -88,7 +91,8 @@
 </template>
 
 <script>
-import detail from "./components/createtable/detail.vue";
+import detail from "./components/ResourceAndLayerIndex/detail.vue";
+// import getItem from '@/filters'
 
 export default {
   components: {
@@ -108,15 +112,24 @@ export default {
     async nodeclick(data) {
       if (data.isresource == 0) {
         const dbtablelist = await this.$Data.dbtable();
+        debugger;
         this.dbtablelist = dbtablelist;
-        console.log("dbtablelist")
-        console.log(dbtablelist)
+        this.dbtabletitle.label = data.label;
+        this.dbtabletitle.isresource = data.isresource;
       } else if (data.isresource == 1) {
         const dbtablelist = await this.$Data.dbtable(data.id);
         this.dbtablelist = dbtablelist;
         const columnlist = await this.$Data.dbtablecolumn(data.id);
         this.dbtablecolumnlist = columnlist;
-        this.dbtabletitle = data;
+        this.dbtabletitle.label = data.label;
+        this.dbtabletitle.isresource = data.isresource;
+        this.dbtabletitle.resname = dbtablelist[0].resname
+        this.dbtabletitle.dlname = dbtablelist[0].dlname
+        this.dbtabletitle.tablenameyw = dbtablelist[0].tablenameyw
+        this.dbtabletitle.tablenamezw = dbtablelist[0].tablenamezw
+        this.dbtabletitle.createtime = dbtablelist[0].createtime
+        this.dbtabletitle.updatetime = dbtablelist[0].updatetime
+        this.dbtabletitle.remark = dbtablelist[0].remark
       }
     }
   },
@@ -124,7 +137,17 @@ export default {
   data() {
     return {
       dbtablecolumnlist: [],
-      dbtabletitle: [],
+      dbtabletitle: {
+        label:'',
+        isresource:'',
+        resname: '',
+        dlname: '',
+        tablenameyw: '',
+        tablenamezw:'',
+        createtime:'',
+        updatetime:'',
+        remark:''
+      },
       dbtablelist: [],
       filterText: "",
       treedata: [],
@@ -158,10 +181,7 @@ export default {
 .el-col {
   border-radius: 4px;
 }
-.left {
-  /* background: #99a9bf; */
-  margin: 0 15px 0 15px;
-}
+
 .fltag {
   margin-bottom: 20px;
   border-bottom: #d3dce6 solid 1px;

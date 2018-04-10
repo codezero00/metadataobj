@@ -195,7 +195,48 @@ code {
   z-index: 1000 !important;
 }
 
-// akeec add
+// table related
+.tab{
+  position: relative;
+  margin-top:20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: #dadddf 14px 14px 20px;
+}
+.tab_header{
+  position: relative;
+  margin-bottom: 18px
+}
+.tab_main{
+  position: relative;
+}
+.tab_footer{
+  margin: 20px 0 20px 0;
+  text-align: center;
+  position: relative;
+}
+.fb-btn{
+  position: relative;
+}
+
+// tree
+// .el-table {
+//     height:500px !important;
+// }
+
+.left {
+  margin: 0 15px 0 15px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: #dadddf 5px 5px 20px;
+}
 .filter-tree {
   margin-top: 10px;
+  font-size: 13px;
+  position: relative;
+  overflow-y: auto;
+  overflow-X: auto;
+  height: 700px;
 }

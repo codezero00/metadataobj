@@ -70,3 +70,153 @@
  .el-table--medium td, .el-table--medium th {
   padding: 2px 0;
 }
+
+.el-table th{
+  height: 60px;
+  background-color: #B1CFFF;
+  color: #494E5E;
+}
+
+// .sort-caret{
+//   border-bottom-color: #828A9F;
+// }
+
+.el-table .sort-caret.ascending {
+  border-bottom-color: #828A9F;
+}
+
+.el-table .sort-caret.descending {
+  border-top-color: #828A9F;
+}
+
+.el-table tr {
+  height: 50px;
+}
+
+.main-container{
+  background-color: #f2f2f2;
+}
+
+//覆盖样式
+.nav-log {
+     width:100%;
+     height:81px;
+     box-sizing: border-box;
+     background-color:#3b4358;
+     line-height: 81px;
+     font-size: 22px;
+}
+.nav-log span {
+     display: block;
+     height:81px;
+     padding-left:70px;
+     color:#FFFFFF;
+}
+
+#app .main-container {
+     margin-left:240px;
+}
+.navbar {
+     height:81px !important;
+     line-height: 81px !important;
+     margin-bottom: 2px;
+     box-shadow: 0px 5px 13px #d5e1f0;
+     position:relative;
+     box-sizing: border-box;
+}
+.str {
+     width:25px;
+     height:25px;
+     position: absolute;
+     top:28px;
+     left:-13px;
+     color:#FFFFFF;
+     font-weight: bold;
+     z-index: 9999;
+     cursor:pointer;
+}
+.with {
+     width:25px;
+     height:25px;
+     position: absolute;
+     color:#FFFFFF;
+     font-weight: bold;
+     z-index: 9999;
+     cursor:pointer;
+     border-radius: 50%;
+     line-height: 25px;
+     text-align: center;
+     border-radius: 50%;
+     line-height: 25px;
+     text-align: center;
+     transition: all 0.5s;
+     cursor:pointer;
+}
+.is-strL {
+     top:-15px;
+     left:-1px;
+     -webkit-transform: rotate(-180deg);
+}
+.is-strR {
+     top:-16px;
+     left:0px;
+     -webkit-transform: rotate(0deg);
+}
+.wscn-icon {
+    width:25px !important;
+    height:25px !important;
+    border-radius: 50%;
+    background-color:#5498fe;
+    position:absolute;
+    top:28px;
+    left:-13px;
+    z-index: 9000;
+}
+
+.el-breadcrumb__item {
+    height:40px;
+}
+.nav-title {
+    width:50%;
+    height:41px;
+    font-size: 22px;
+    font-weight: bold;
+    position:absolute;
+    top:2px;
+    left:40px;
+    margin-left:10px;
+    display: block;
+}
+.hamburger-container {
+    position:relative;
+}
+.app-breadcrumb {
+    font-size: 22px !important;
+    line-height: 81px !important;
+}
+.el-menu-item {
+    height:40px !important;
+    line-height: 40px;
+}
+.el-breadcrumb__inner a {
+    color:#a4a9ba;
+    font-size: 22px;
+}
+.no-redirect {
+    color:#494e5d !important;
+    font-weight: bold;
+    font-size: 22px;
+}
+.tags-view-item {
+    margin-left:30px;
+}
+.el-submenu__title {
+    height:40px !important;
+    line-height: 40px !important;
+}
+
+
+//覆盖行政区划管理
+.el-input__inner {
+    border-radius: 24px;
+}

@@ -14,7 +14,8 @@ import metadatadetail from '@/view/MetaDataManage/metadatadetail.vue'
 import metadatasearch from '@/view/MetaDataManage/metadatasearch.vue'
 //
 import FrontDatabaseManage from '@/view/DWManage/FrontDatabaseManage.vue'  // 前置库
-import ResourceAndLayer from '@/view/DWManage/ResourceAndLayer.vue'  // 资源库与分层
+import ResourceManage from '@/view/DWManage/ResourceManage.vue'  // 资源库与分层
+import LayerManage from '@/view/DWManage/LayerManage.vue'  // 资源库与分层
 import DataTableManage from '@/view/DWManage/DataTableManage.vue'  // 数据表管理
 import ResourceIndex from '@/view/DWManage/ResourceIndex.vue' // 资源目录
 import LayerIndex from '@/view/DWManage/LayerIndex.vue' // 分层目录
@@ -93,21 +94,7 @@ export const constrouterMap = [{
       }
     }]
   },
-  // {
-  //   path: '/documentation',
-  //   component: Layout,
-  //   // redirect: '/documentation/index',
-  //   meta: {
-  //     title: 'documentation',
-  //     icon: 'documentation'
-  //   },
-  //   children: [
-  //     {path: 'list', component: articlelist,name: 'articlelist',meta: {title: 'articlelist',icon: 'documentation',noCache: false}},
-  //     {path: 'create', component: createarticle,name: 'createarticle',meta: {title: 'createarticle',icon: 'documentation',noCache: false}},
-  //     {path: 'edit', component: editarticle,name: 'editarticle',meta: {title: 'editarticle',icon: 'documentation',noCache: false}}
-      
-  //   ]
-  // },
+
 
   {
     path: '/metadatamanage',
@@ -118,8 +105,8 @@ export const constrouterMap = [{
       icon: 'documentation'
     },
     children: [
-      {path: 'class', component: metadataclass,name: 'metadataclass',meta: {title: 'metadataclass',icon: 'documentation',noCache: false}},
-      {path: 'detail', component: metadatadetail,name: 'metadatadetail',meta: {title: 'metadatadetail',icon: 'documentation',noCache: false}},
+      {path: 'class', component: metadataclass,name: 'metadataclass',meta: {title: 'metadataclass',icon: 'dot',noCache: false}},
+      {path: 'detail', component: metadatadetail,name: 'metadatadetail',meta: {title: 'metadatadetail',icon: 'dot',noCache: false}},
       // {path: 'search', component: metadatasearch,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
       
     ]
@@ -134,15 +121,18 @@ export const constrouterMap = [{
       icon: 'documentation'
     },
     children: [
-      {path: 'FrontDatabaseManage', component: FrontDatabaseManage,name: 'FrontDatabaseManage',meta: {title: 'FrontDatabaseManage',icon: 'documentation',noCache: false}},
+      {path: 'FrontDatabaseManage', component: FrontDatabaseManage,name: 'FrontDatabaseManage',meta: {title: 'FrontDatabaseManage',icon: 'dot',noCache: false}},
       
-      {path: 'ResourceAndLayer', component: ResourceAndLayer,name: 'ResourceAndLayer',meta: {title: 'ResourceAndLayer',icon: 'documentation',noCache: false}},
-      {path: 'DataTableManage', component: DataTableManage,name: 'DataTableManage',meta: {title: 'DataTableManage',icon: 'documentation',noCache: false}},
+      //{path: 'ResourceAndLayer', component: ResourceAndLayer,name: 'ResourceAndLayer',meta: {title: 'ResourceAndLayer',icon: 'documentation',noCache: false}},
+      {path: 'ResourceManage', component: ResourceManage,name: 'ResourceManage',meta: {title: 'ResourceManage',icon: 'dot',noCache: false}},
+      {path: 'LayerManage', component: LayerManage,name: 'LayerManage',meta: {title: 'LayerManage',icon: 'dot',noCache: false}},
+ 
+      {path: 'DataTableManage', component: DataTableManage,name: 'DataTableManage',meta: {title: 'DataTableManage',icon: 'dot',noCache: false}},
 
-      {path: 'ResourceIndex', component: ResourceIndex,name: 'ResourceIndex',meta: {title: 'ResourceIndex',icon: 'documentation',noCache: false}},
-      {path: 'LayerIndex', component: LayerIndex,name: 'LayerIndex',meta: {title: 'LayerIndex',icon: 'documentation',noCache: false}},
+      {path: 'ResourceIndex', component: ResourceIndex,name: 'ResourceIndex',meta: {title: 'ResourceIndex',icon: 'dot',noCache: false}},
+      {path: 'LayerIndex', component: LayerIndex,name: 'LayerIndex',meta: {title: 'LayerIndex',icon: 'dot',noCache: false}},
 
-      {path: 'shareindex', component: shareindex,name: 'shareindex',meta: {title: 'shareindex',icon: 'documentation',noCache: false}}
+      //{path: 'shareindex', component: shareindex,name: 'shareindex',meta: {title: 'shareindex',icon: 'documentation',noCache: false}}
       
     ]
   },
@@ -170,8 +160,8 @@ export const constrouterMap = [{
       icon: 'documentation'
     }, 
     children: [
-      {path: 'clientregister', component: clientregister, name: 'clientregister', meta: {title: 'clientregister',icon: 'documentation',noCache: false}},
-      {path: 'jobmanage', component: jobmanage, name: 'jobmanage', meta: {title: 'jobmanage',icon: 'documentation',noCache: false}}, 
+      {path: 'clientregister', component: clientregister, name: 'clientregister', meta: {title: 'clientregister',icon: 'dot',noCache: false}},
+      {path: 'jobmanage', component: jobmanage, name: 'jobmanage', meta: {title: 'jobmanage',icon: 'dot',noCache: false}}, 
       //{path: 'jobmonitoring', component: jobmonitoring, name: 'jobmonitoring', meta: {title: 'jobmonitoring',icon: 'documentation',noCache: false}}, 
       //{path: 'joblog', component: joblog, name: 'joblog', meta: {title: 'joblog',icon: 'documentation',noCache: false}}, 
     ]
@@ -186,8 +176,8 @@ export const constrouterMap = [{
       icon: 'documentation'
     }, 
     children: [
-      {path: 'datacheck', component: datacheck, name: 'datacheck', meta: {title: 'datacheck',icon: 'documentation',noCache: false}},
-      {path: 'datacheckrule', component: datacheckrule, name: 'datacheckrule', meta: {title: 'datacheckrule',icon: 'documentation',noCache: false}}, 
+      {path: 'datacheck', component: datacheck, name: 'datacheck', meta: {title: 'datacheck',icon: 'dot',noCache: false}},
+      {path: 'datacheckrule', component: datacheckrule, name: 'datacheckrule', meta: {title: 'datacheckrule',icon: 'dot',noCache: false}}, 
     ]
   },
 
@@ -200,9 +190,9 @@ export const constrouterMap = [{
       icon: 'documentation'
     }, 
     children: [
-      {path: 'tablelifecycle', component: tablelifecycle, name: 'tablelifecycle', meta: {title: 'tablelifecycle',icon: 'documentation',noCache: false}},
-      {path: 'viewlifecycle', component: viewlifecycle, name: 'viewlifecycle', meta: {title: 'viewlifecycle',icon: 'documentation',noCache: false}}, 
-      {path: 'dataline', component: dataline, name: 'dataline', meta: {title: 'dataline',icon: 'documentation',noCache: false}}, 
+      {path: 'tablelifecycle', component: tablelifecycle, name: 'tablelifecycle', meta: {title: 'tablelifecycle',icon: 'dot',noCache: false}},
+      {path: 'viewlifecycle', component: viewlifecycle, name: 'viewlifecycle', meta: {title: 'viewlifecycle',icon: 'dot',noCache: false}}, 
+      {path: 'dataline', component: dataline, name: 'dataline', meta: {title: 'dataline',icon: 'dot',noCache: false}}, 
     ]
   },
 
@@ -215,8 +205,8 @@ export const constrouterMap = [{
       icon: 'documentation'
     }, 
     children: [
-      {path: 'relatedanalyze', component: relatedanalyze, name: 'relatedanalyze', meta: {title: 'relatedanalyze',icon: 'documentation',noCache: false}},
-      {path: 'relatedgraph', component: relatedgraph, name: 'relatedgraph', meta: {title: 'relatedgraph',icon: 'documentation',noCache: false}}, 
+      {path: 'relatedanalyze', component: relatedanalyze, name: 'relatedanalyze', meta: {title: 'relatedanalyze',icon: 'dot',noCache: false}},
+      {path: 'relatedgraph', component: relatedgraph, name: 'relatedgraph', meta: {title: 'relatedgraph',icon: 'dot',noCache: false}}, 
    ]
   },
 
@@ -229,12 +219,12 @@ export const constrouterMap = [{
       icon: 'documentation'
     }, 
     children: [
-      {path: 'nosqldatabasemanage', component: nosqldatabasemanage, name: 'nosqldatabasemanage', meta: {title: 'nosqldatabasemanage',icon: 'documentation',noCache: false}},
-      {path: 'nosqlclassmanage', component: nosqlclassmanage, name: 'nosqlclassmanage', meta: {title: 'nosqlclassmanage',icon: 'documentation',noCache: false}}, 
-      {path: 'nosqlindexmanage', component: nosqlindexmanage, name: 'nosqlindexmanage', meta: {title: 'nosqlindexmanage',icon: 'documentation',noCache: false}}, 
-      {path: 'nosqladvancedsearch', component: nosqladvancedsearch, name: 'nosqladvancedsearch', meta: {title: 'nosqladvancedsearch',icon: 'documentation',noCache: false}}, 
-      {path: 'nosqlvisualstatistics', component: nosqlvisualstatistics, name: 'nosqlvisualstatistics', meta: {title: 'nosqlvisualstatistics',icon: 'documentation',noCache: false}}, 
-      {path: 'nosqllog', component: nosqllog, name: 'nosqllog', meta: {title: 'nosqllog',icon: 'documentation',noCache: false}}, 
+      {path: 'nosqldatabasemanage', component: nosqldatabasemanage, name: 'nosqldatabasemanage', meta: {title: 'nosqldatabasemanage',icon: 'dot',noCache: false}},
+      {path: 'nosqlclassmanage', component: nosqlclassmanage, name: 'nosqlclassmanage', meta: {title: 'nosqlclassmanage',icon: 'dot',noCache: false}}, 
+      {path: 'nosqlindexmanage', component: nosqlindexmanage, name: 'nosqlindexmanage', meta: {title: 'nosqlindexmanage',icon: 'dot',noCache: false}}, 
+      {path: 'nosqladvancedsearch', component: nosqladvancedsearch, name: 'nosqladvancedsearch', meta: {title: 'nosqladvancedsearch',icon: 'dot',noCache: false}}, 
+      {path: 'nosqlvisualstatistics', component: nosqlvisualstatistics, name: 'nosqlvisualstatistics', meta: {title: 'nosqlvisualstatistics',icon: 'dot',noCache: false}}, 
+      {path: 'nosqllog', component: nosqllog, name: 'nosqllog', meta: {title: 'nosqllog',icon: 'dot',noCache: false}}, 
 
     ]
   },
@@ -248,14 +238,14 @@ export const constrouterMap = [{
       icon: 'documentation'
     }, 
     children: [
-      {path: 'modelregister', component: modelregister, name: 'modelregister', meta: {title: 'modelregister',icon: 'documentation',noCache: false}},
-      {path: 'modelvisual', component: modelvisual, name: 'modelvisual', meta: {title: 'modelvisual',icon: 'documentation',noCache: false}}, 
-      {path: 'modelmonitor', component: modelmonitor, name: 'modelmonitor', meta: {title: 'modelmonitor',icon: 'documentation',noCache: false}}, 
-      {path: 'mlmodelmanage', component: mlmodelmanage, name: 'mlmodelmanage', meta: {title: 'mlmodelmanage',icon: 'documentation',noCache: false}}, 
-      {path: 'vedioanlyzemanage', component: vedioanlyzemanage, name: 'vedioanlyzemanage', meta: {title: 'vedioanlyzemanage',icon: 'documentation',noCache: false}}, 
-      {path: 'graphmodelmanage', component: graphmodelmanage, name: 'graphmodelmanage', meta: {title: 'graphmodelmanage',icon: 'documentation',noCache: false}}, 
-      {path: 'modelstatistics', component: modelstatistics, name: 'modelstatistics', meta: {title: 'modelstatistics',icon: 'documentation',noCache: false}}, 
-      {path: 'modellog', component: modellog, name: 'modellog', meta: {title: 'modellog',icon: 'documentation',noCache: false}}, 
+      {path: 'modelregister', component: modelregister, name: 'modelregister', meta: {title: 'modelregister',icon: 'dot',noCache: false}},
+      {path: 'modelvisual', component: modelvisual, name: 'modelvisual', meta: {title: 'modelvisual',icon: 'dot',noCache: false}}, 
+      {path: 'modelmonitor', component: modelmonitor, name: 'modelmonitor', meta: {title: 'modelmonitor',icon: 'dot',noCache: false}}, 
+      {path: 'mlmodelmanage', component: mlmodelmanage, name: 'mlmodelmanage', meta: {title: 'mlmodelmanage',icon: 'dot',noCache: false}}, 
+      {path: 'vedioanlyzemanage', component: vedioanlyzemanage, name: 'vedioanlyzemanage', meta: {title: 'vedioanlyzemanage',icon: 'dot',noCache: false}}, 
+      {path: 'graphmodelmanage', component: graphmodelmanage, name: 'graphmodelmanage', meta: {title: 'graphmodelmanage',icon: 'dot',noCache: false}}, 
+      {path: 'modelstatistics', component: modelstatistics, name: 'modelstatistics', meta: {title: 'modelstatistics',icon: 'dot',noCache: false}}, 
+      {path: 'modellog', component: modellog, name: 'modellog', meta: {title: 'modellog',icon: 'dot',noCache: false}}, 
 
     ]
   },

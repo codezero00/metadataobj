@@ -1,19 +1,19 @@
 <template>
+<div>
 <el-row type="flex" class="row-bg">
-  <el-col :span="24">
-    <div class="grid-content right">
+  <el-col :span="24"><div class="grid-content right">
 
       <div class="tab">
         <div class="tab_header">
           <el-button type="primary" class="fb-btn" icon="el-icon-plus">添加</el-button>
           <el-button type="primary" class="fb-btn" icon="el-icon-edit">编辑</el-button>
-          <el-button type="warning" @click="del" class="fb-btn" icon="el-icon-delete">删除</el-button>
+          <el-button type="warning" class="fb-btn" icon="el-icon-delete">删除</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-upload">导入</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-download">导出</el-button>
         </div>
         <div class="tab_main">
           <el-table
-            :data="FrontBaseData"
+            :data="ResourceBaseData"
             border
             stripe
             height=450
@@ -28,54 +28,41 @@
 
 
             <el-table-column
-              prop="name"
-              label="名称"
+              prop="XMMC"
+              label="项目名称"
               sortable
               align=center
               >
             </el-table-column>
             <el-table-column
-              prop="ip"
-              label="IP"
+              prop="SJLYDW"
+              label="数据来源单位"
               sortable
               align=center
               >
             </el-table-column>
             <el-table-column
-              prop="usesoftware"
-              label="使用软件"
+              prop="CJDW"
+              label="承建单位"
               sortable
               align=center
               >
             </el-table-column>
             <el-table-column
-              prop="location"
-              label="位置"
+              prop="LXR"
+              label="联系人"
               sortable
               align=center
               >
             </el-table-column>
             <el-table-column
-              prop="dept"
-              label="所属部门"
+              prop="LXFS"
+              label="联系方式"
               sortable
               align=center
               >
             </el-table-column>
-            <el-table-column
-              prop="effect"
-              label="作用"
-              sortable
-              align=center
-              >
-            </el-table-column>
-            <el-table-column
-              prop="remark"
-              label="备注"
-              sortable
-              align=center
-              >
-            </el-table-column>
+
 
             <el-table-column
               label="状态"
@@ -85,8 +72,8 @@
               >
               <template slot-scope="scope">
                 <el-tag
-                  :type="scope.row.status === '可用' ? 'success' : 'danger'"
-                  close-transition>{{scope.row.status}}</el-tag>
+                  :type="scope.row.ZT === '可用' ? 'success' : 'danger'"
+                  close-transition>{{scope.row.ZT}}</el-tag>
               </template>
             </el-table-column>  
           </el-table>
@@ -105,31 +92,27 @@
         </div>
       </div>
 
-      </div>
-    </el-col>
+    </div></el-col>
 </el-row>
+</div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      FrontBaseData: []
+      ResourceBaseData: []
     };
   },
 
   mounted() {
-    this.GetFrontBase();
-    // (async () => {
-    //   const dbmanage = await this.$Data.dbmanage();
-    //   console.log(dbmanage)
-    //   this.dbmanagedata = dbmanage;
-    // })();
+    this.GetResourceBase();
   },
-  methods: {
-    async GetFrontBase() {
-      const FrontBase = await this.$Data.FrontBase();
-      this.FrontBaseData = FrontBase;
+
+  methods:{
+    async GetResourceBase(){
+      const ResourceBase = await this.$Data.ResourceBase(); 
+      this.ResourceBaseData = ResourceBase;
     },
     del() {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {
@@ -157,9 +140,8 @@ export default {
 <style scoped>
 .el-row {
   margin-bottom: 20px;
-  min-height: 500px;
+  height: 333px;
   padding: 10px 0;
-    /* background-color: #f2f2f2; */
 }
 .el-col {
   border-radius: 4px;

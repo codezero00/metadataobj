@@ -18,6 +18,7 @@
         :render-content="renderContent"
         ref="tree2">
       </el-tree>
+
     </div></el-col>
 
   <el-col :span="18"><div class="grid-content right">
@@ -258,10 +259,7 @@ export default {
 .el-col {
   border-radius: 4px;
 }
-.left {
-  /* background: #99a9bf; */
-  margin: 0 15px 0 15px;
-}
+
 .fltag {
   margin-bottom: 20px;
   border-bottom: #d3dce6 solid 1px;
@@ -269,7 +267,11 @@ export default {
 .right {
   margin: 0 15px 0 0;
 }
-.filter-tree {
+/* .filter-tree {
   font-size: 13px;
-}
+  position: relative;
+  overflow-y: auto;
+  height: 660px;
+} */
+
 </style>

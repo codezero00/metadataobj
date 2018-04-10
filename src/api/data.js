@@ -34,14 +34,29 @@ class Data {
     return request.get('metadata',{'id':params})
   }
 
-  //dbmanage
-  static dbmanage(){
-    return request.get('dbmanage')
+  //FrontBase
+  static FrontBase(){
+    return request.get('FrontBase')
+  }
+
+  //ResourceBase
+  static ResourceBase(){
+    return request.get('ResourceBase')
+  }
+
+  //DataLayer
+  static DataLayer(){
+    return request.get('DataLayer')
   }
 
   //dbtabletree
   static dbtabletree(){
     return request.get('dbtabletree')
+  }
+
+  //DBTableLayerTree
+  static DBTableLayerTree(){
+    return request.get('dbtablelayertree')
   }
 
   //dbtable
@@ -57,6 +72,11 @@ class Data {
   //dbtablecolumn
   static etlclients(params){
     return request.get('etlclients')
+  }
+
+  //dbtablecolumn
+  static etljobs(params){
+    return request.get('etljobs')
   }
 
 }

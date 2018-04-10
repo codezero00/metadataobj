@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import detail from "./components/createtable/detail.vue";
+import detail from "./components/ResourceAndLayerIndex/detail.vue";
 
 export default {
   components: {
