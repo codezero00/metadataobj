@@ -4,7 +4,6 @@ import request from '@/utils/request'
 class Data {
   constructor() {}
 
-
   static weekgaplist() {
     // console.log(user + passwd)
     return request.get('10')
@@ -15,7 +14,6 @@ class Data {
   }
 
   static metagroup() {
-    //console.log(user + passwd)
     return request.get('metagroup')
   }
 
@@ -35,18 +33,18 @@ class Data {
   }
 
   //FrontBase
-  static FrontBase(){
-    return request.get('FrontBase')
+  static FrontBase(params){
+    return request.get('FrontBase',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
   }
 
   //ResourceBase
-  static ResourceBase(){
-    return request.get('ResourceBase')
+  static ResourceBase(params){
+    return request.get('ResourceBase',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
   }
 
   //DataLayer
-  static DataLayer(){
-    return request.get('DataLayer')
+  static DataLayer(params){
+    return request.get('DataLayer',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
   }
 
   //dbtabletree
@@ -57,6 +55,11 @@ class Data {
   //DBTableLayerTree
   static DBTableLayerTree(){
     return request.get('dbtablelayertree')
+  }
+
+  //dbtable
+  static GetTable(params){
+    return request.get('GetTable',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
   }
 
   //dbtable
@@ -71,7 +74,7 @@ class Data {
 
   //dbtablecolumn
   static etlclients(params){
-    return request.get('etlclients')
+    return request.get('etlclients',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
   }
 
   //dbtablecolumn

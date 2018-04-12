@@ -13,7 +13,7 @@
         </div>
         <div class="tab_main">
           <el-table
-            :data="ResourceBaseData"
+            :data="ResourceBaseData.res"
             border
             stripe
             height=450
@@ -83,11 +83,11 @@
             background
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage"
+            :current-page="ParamsPage.CurrentPage"
             :page-sizes="[10, 20, 30, 40]"
-            :page-size="10"
+            :page-size= "ParamsPage.PageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+            :total="ParamsPage.TotalCount">
           </el-pagination>
         </div>
       </div>
@@ -101,18 +101,33 @@
 export default {
   data() {
     return {
-      ResourceBaseData: []
+      ResourceBaseData: [],
+      ParamsPage:{
+        CurrentPage: 1,
+        PageSize: 10,
+        TotalCount:0,
+      }
     };
   },
 
   mounted() {
-    this.GetResourceBase();
+    this.GetResourceBase(this.ParamsPage);
   },
 
   methods:{
-    async GetResourceBase(){
-      const ResourceBase = await this.$Data.ResourceBase(); 
+    handleSizeChange(value){
+      this.ParamsPage.PageSize=value;
+      this.GetResourceBase(this.ParamsPage);
+    },
+    handleCurrentChange(value){
+      this.ParamsPage.CurrentPage=value;
+      this.GetResourceBase(this.ParamsPage);
+    },
+    async GetResourceBase(params){
+      const ResourceBase = await this.$Data.ResourceBase(params); 
       this.ResourceBaseData = ResourceBase;
+      this.ParamsPage.CurrentPage = ResourceBase.page.page_index
+      this.ParamsPage.TotalCount = ResourceBase.page.item_count
     },
     del() {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {

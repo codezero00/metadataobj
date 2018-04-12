@@ -218,5 +218,20 @@
 
 //覆盖行政区划管理
 .el-input__inner {
-    border-radius: 24px;
+    // border-radius: 14px;
+}
+
+.el-dialog__header {
+  padding: 16px 20px 16px;
+  background-color: #F8F8F8;
+  border-bottom: 1px solid #dcdcdc
+}
+
+.el-dialog__body {
+  padding: 20px;
+  background-color: #F2F2F2;
+}
+
+.el-form-item {
+  margin-bottom: 20px;
 }

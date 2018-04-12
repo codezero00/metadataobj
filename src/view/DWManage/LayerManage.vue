@@ -13,7 +13,7 @@
         </div>
         <div class="tab_main">
           <el-table
-            :data="DataLayerData"
+            :data="DataLayerData.res"
             border
             stripe
             height=450
@@ -77,11 +77,11 @@
             background
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[1, 2, 3, 4]"
-            :page-size="1"
+            :current-page="ParamsPage.CurrentPage"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size= "ParamsPage.PageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="this.DataLayerData.length">
+            :total="ParamsPage.TotalCount">
           </el-pagination>
         </div>
       </div>
@@ -96,18 +96,32 @@ export default {
   data() {
     return {
       DataLayerData: [],
-      currentPage: 1
+      ParamsPage:{
+        CurrentPage: 1,
+        PageSize: 10,
+        TotalCount:0,
+      }
     };
   },
 
   mounted() {
-    this.GetDataLayer();
+    this.GetDataLayer(this.ParamsPage);
   },
 
   methods:{
-    async GetDataLayer(){
-      const DataLayer = await this.$Data.DataLayer(); 
+    handleSizeChange(value){
+      this.ParamsPage.PageSize=value;
+      this.GetDataLayer(this.ParamsPage);
+    },
+    handleCurrentChange(value){
+      this.ParamsPage.CurrentPage=value;
+      this.GetDataLayer(this.ParamsPage);
+    },
+    async GetDataLayer(params){
+      const DataLayer = await this.$Data.DataLayer(params); 
       this.DataLayerData = DataLayer;
+      this.ParamsPage.CurrentPage = DataLayer.page.page_index
+      this.ParamsPage.TotalCount = DataLayer.page.item_count
     },
     del() {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {

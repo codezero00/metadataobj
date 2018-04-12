@@ -11,8 +11,16 @@ const pub = {
       opened: true 
     },
     visitedViews: [],
+    DialogGolbalVisible: false,
+    DialogRenderContent: null
   },
   mutations: {
+    SET_RENDER(state, val) {
+      state.DialogRenderContent = val
+    },
+    SET_DIALOG(state, val) {
+      state.DialogGolbalVisible = val
+    },
     SET_BOTTOMNAV(state, val) {
       state.bottomNav = val
     },
@@ -49,6 +57,12 @@ const pub = {
     }
   },
   actions: {
+    setrender({commit}, val) {
+      commit('SET_RENDER', val)
+    },
+    setDialogVisible({commit},val) {
+      commit('SET_DIALOG', val)
+    },
     toggle({commit}) {
       commit('SET_LEFTBAR')
     },

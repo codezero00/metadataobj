@@ -13,7 +13,7 @@
         </div>
         <div class="tab_main">
           <el-table
-            :data="etlclientsdata"
+            :data="etlclientsdata.res"
             border
             stripe
             height=450
@@ -96,16 +96,16 @@
           </el-table>
         </div>
         <div class="tab_footer">
-          <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[10, 20, 30, 40]"
-            :page-size="10"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
-          </el-pagination>
+						<el-pagination
+							background
+							@size-change="handleSizeChange"
+							@current-change="handleCurrentChange"
+							:current-page="ParamsPage.CurrentPage"
+							:page-sizes="[10, 20, 30, 40]"
+							:page-size= "ParamsPage.PageSize"
+							layout="total, sizes, prev, pager, next, jumper"
+							:total="ParamsPage.TotalCount">
+						</el-pagination>
         </div>
       </div>
 
@@ -119,16 +119,57 @@
 export default {
   data() {
     return {
-      etlclientsdata: []
+      etlclientsdata: [],
+      ParamsPage: {
+        CurrentPage: 1,
+        PageSize: 10,
+        TotalCount: 0
+      }
     };
   },
 
   mounted() {
-    (async () => {
-      const etlclients = await this.$Data.etlclients();
-      console.log(etlclients)
+    this.GetETLClients(this.ParamsPage)
+    // (async () => {
+    //   const etlclients = await this.$Data.etlclients();
+    //   console.log(etlclients);
+    //   this.etlclientsdata = etlclients;
+    // })();
+  },
+  methods: {
+	  handleSizeChange(value){
+      this.ParamsPage.PageSize=value;
+      this.GetETLClients(this.ParamsPage);
+    },
+    handleCurrentChange(value){
+      this.ParamsPage.CurrentPage=value;
+      this.GetETLClients(this.ParamsPage);
+    },
+    async GetETLClients(params) {
+      const etlclients = await this.$Data.etlclients(params);
       this.etlclientsdata = etlclients;
-    })();
+      this.ParamsPage.CurrentPage = etlclients.page.page_index;
+      this.ParamsPage.TotalCount = etlclients.page.item_count;
+    },
+    del() {
+      this.$confirm("此操作将永久删除, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+    },
   }
 };
 </script>
@@ -154,10 +195,10 @@ export default {
 .right {
   margin: 0 15px 0 15px;
 }
-.btn_fro{
-  margin-left:10px;
+.btn_fro {
+  margin-left: 10px;
 }
-.btn_beh{
-  margin-left:5px;
+.btn_beh {
+  margin-left: 5px;
 }
 </style>

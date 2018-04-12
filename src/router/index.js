@@ -130,7 +130,8 @@ export const constrouterMap = [{
       {path: 'DataTableManage', component: DataTableManage,name: 'DataTableManage',meta: {title: 'DataTableManage',icon: 'dot',noCache: false}},
 
       {path: 'ResourceIndex', component: ResourceIndex,name: 'ResourceIndex',meta: {title: 'ResourceIndex',icon: 'dot',noCache: false}},
-      {path: 'LayerIndex', component: LayerIndex,name: 'LayerIndex',meta: {title: 'LayerIndex',icon: 'dot',noCache: false}},
+      {path: 'LayerIndex', component: LayerIndex,name: 'LayerIndex',meta: {title: 'LayerIndex',icon: 'dot',noCache: false},
+    },
 
       //{path: 'shareindex', component: shareindex,name: 'shareindex',meta: {title: 'shareindex',icon: 'documentation',noCache: false}}
       

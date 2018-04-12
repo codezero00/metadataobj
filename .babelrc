@@ -6,5 +6,5 @@
     "stage-2",
     "env"
   ],
-  "plugins": ["transform-runtime","transform-vue-jsx"]
+  "plugins": ["transform-runtime","jsx-v-model","transform-vue-jsx"]
 }

@@ -7,6 +7,8 @@ const getters = {
     addRouters: state => state.permission.addRouters,
     avatar: state => state.user.image,
     name: state => state.user.name,
+    gbdiaglog: state => state.pub.DialogGolbalVisible,
+    diaglogrender: state => state.pub.DialogRenderContent
   }
   export default getters
   
