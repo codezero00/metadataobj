@@ -107,7 +107,7 @@ export const constrouterMap = [{
     children: [
       {path: 'class', component: metadataclass,name: 'metadataclass',meta: {title: 'metadataclass',icon: 'dot',noCache: false}},
       {path: 'detail', component: metadatadetail,name: 'metadatadetail',meta: {title: 'metadatadetail',icon: 'dot',noCache: false}},
-      // {path: 'search', component: metadatasearch,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
+      {path: 'createarticle', component: createarticle,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
       
     ]
   },

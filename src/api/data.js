@@ -82,6 +82,12 @@ class Data {
     return request.get('etljobs')
   }
 
+  // I U D
+  //FrontBaseInsOrUp
+  static FrontBaseInsOrUp(params){
+    return request.post('FrontBaseInsOrUp',params)
+  }
+
 }
 
 export default Data

@@ -5,9 +5,9 @@
 
       <div class="tab">
         <div class="tab_header">
-          <el-button type="primary" @click="fbins" class="fb-btn" icon="el-icon-plus">添加</el-button>
-          <el-button type="primary" @click="fbup"  class="fb-btn" icon="el-icon-edit">编辑</el-button>
-          <el-button type="warning" @click="fbdel" class="fb-btn" icon="el-icon-delete">删除</el-button>
+          <el-button type="primary" @click="Ins" class="fb-btn" icon="el-icon-plus">添加</el-button>
+          <el-button type="primary" @click="Up"  class="fb-btn" icon="el-icon-edit" :disabled='UpButtionDisabled'>编辑</el-button>
+          <el-button type="warning" @click="Del" class="fb-btn" icon="el-icon-delete">删除</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-upload">导入</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-download">导出</el-button>
         </div>
@@ -18,6 +18,7 @@
             stripe
             height=450
             style="width: 100%"
+            @select='SelectRows'
             >
             <el-table-column
               type="selection"
@@ -94,8 +95,8 @@
         <div class="tab_footer">
           <el-pagination
             background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
+            @size-change="HandleSizeChange"
+            @current-change="HandleCurrentChange"
             :current-page="ParamsPage.currentPage"
             :page-sizes="[10, 20, 30, 40]"
             :page-size= "ParamsPage.PageSize"
@@ -112,7 +113,7 @@
 
 <script>
 export default {
-  name:'FrontDatabaseManage',
+  name: "FrontDatabaseManage",
   data() {
     return {
       FrontBaseData: [],
@@ -121,22 +122,27 @@ export default {
         PageSize: 10,
         TotalCount: 0
       },
-      form:{
-        fbid:'',
-        name:'2222',
-        ip:'',
-        usesoftware:'',
-        location:'',
-        dept:'',
-        effect:'',
-        remark:'',
-        status:''
-      }
+      form: {
+        fbid: null,
+        name: "",
+        ip: "",
+        usesoftware: "",
+        location: "",
+        dept: "",
+        effect: "",
+        remark: "",
+        status: "",
+        createuserid: "",
+        updateuserid: "",
+        isdel: 1
+      },
+      TmpSelectRows: [],
+      UpButtionDisabled: true
     };
   },
   mounted() {
     this.GetFrontBase(this.ParamsPage);
-    this.initdiaglog();
+    this.InitDiaglog();
   },
   methods: {
     // test123(){
@@ -144,50 +150,87 @@ export default {
     //   console.log(xx.propsData.renderContent)
     //   this.$store.dispatch('setrender',xx.propsData.renderContent)
     // },
-    initdiaglog(){
-      this.$iouform({data: {},propsData: {}});
-      let xx = {propsData: {renderContent: (
-            <el-form ref="form" model={this.form} label-width="80px">
-            <el-form-item label="名称">
-                <el-input v-model={this.form.name}></el-input>
-            </el-form-item>
-            <el-form-item label="前置库IP">
-                <el-input v-model={this.form.ip}></el-input>
-            </el-form-item>
-            <el-form-item label="使用软件">
-                <el-input v-model={this.form.usesoftware}></el-input>
-            </el-form-item>
-            <el-form-item label="位置">
-                <el-input v-model={this.form.location}></el-input>
-            </el-form-item>
-            <el-form-item label="所属部门">
-                <el-input v-model={this.form.dept}></el-input>
-            </el-form-item>
-            <el-form-item label="状态">
-                <select v-model={this.form.status} placeholder="请选状态">
-                <option label="可用" value="可用"/>
-                <option label="不可用" value="不可用"/>
-                </select>
-            </el-form-item>
-            <el-form-item label="作用">
-                <el-input type="textarea" v-model={this.form.effect}></el-input>
-            </el-form-item>
-            <el-form-item label="备注">
-                <el-input type="textarea" v-model={this.form.remark}></el-input>
-            </el-form-item>
-            <div class="formfooter">
-                <el-button nativeOnClick={() => this.$store.dispatch('setDialogVisible',false)}>取消</el-button>
-                <el-button type="primary" nativeOnClick={() => this.fbsave()}>保存</el-button>
-            </div>
-            </el-form>
-      )}};
-      this.$store.dispatch('setrender',xx.propsData.renderContent);
+    SelectRows(selection, row) {
+      this.TmpSelectRows = selection;
+      console.log(this.TmpSelectRows);
+      if (this.TmpSelectRows.length === 1) {
+        // this.$refs.UpButton.disabled=false;
+        this.UpButtionDisabled = false;
+      } else {
+        // this.$refs.UpButton.disabled=true;
+        this.UpButtionDisabled = true;
+      }
     },
-    handleSizeChange(value) {
+    FormClear() {
+      this.form.fbid = "";
+      this.form.name = "";
+      this.form.ip = "";
+      this.form.usesoftware = "";
+      this.form.location = "";
+      this.form.dept = "";
+      this.form.effect = "";
+      this.form.remark = "";
+      this.form.status = "";
+      this.form.createuserid = "";
+      this.form.updateuserid = "";
+      this.form.isdel = 1;
+    },
+    InitDiaglog() {
+      this.$iouform({ data: {}, propsData: {} });
+      let xx = {
+        propsData: {
+          renderContent: (
+            <el-form ref="form" model={this.form} label-width="80px">
+              <el-form-item label="名称">
+                <el-input v-model={this.form.name} />
+              </el-form-item>
+              <el-form-item label="前置库IP">
+                <el-input v-model={this.form.ip} />
+              </el-form-item>
+              <el-form-item label="使用软件">
+                <el-input v-model={this.form.usesoftware} />
+              </el-form-item>
+              <el-form-item label="位置">
+                <el-input v-model={this.form.location} />
+              </el-form-item>
+              <el-form-item label="所属部门">
+                <el-input v-model={this.form.dept} />
+              </el-form-item>
+              <el-form-item label="状态">
+                <select v-model={this.form.status} placeholder="请选状态">
+                  <option label="可用" value="可用" />
+                  <option label="不可用" value="不可用" />
+                </select>
+              </el-form-item>
+              <el-form-item label="作用">
+                <el-input type="textarea" v-model={this.form.effect} />
+              </el-form-item>
+              <el-form-item label="备注">
+                <el-input type="textarea" v-model={this.form.remark} />
+              </el-form-item>
+              <div class="formfooter">
+                <el-button
+                  nativeOnClick={() =>
+                    this.$store.dispatch("setDialogVisible", false)
+                  }
+                >
+                  取消
+                </el-button>
+                <el-button type="primary" nativeOnClick={() => this.Save()}>
+                  保存
+                </el-button>
+              </div>
+            </el-form>
+          )
+        }
+      };
+      this.$store.dispatch("setrender", xx.propsData.renderContent);
+    },
+    HandleSizeChange(value) {
       this.ParamsPage.PageSize = value;
       this.GetFrontBase(this.ParamsPage);
     },
-    handleCurrentChange(value) {
+    HandleCurrentChange(value) {
       this.ParamsPage.CurrentPage = value;
       this.GetFrontBase(this.ParamsPage);
     },
@@ -197,29 +240,52 @@ export default {
       this.ParamsPage.CurrentPage = FrontBase.page.page_index;
       this.ParamsPage.TotalCount = FrontBase.page.item_count;
     },
-    fbins() {
-
-      this.$store.dispatch('setDialogVisible',true)
+    Ins() {
+      this.FormClear();
+      this.$store.dispatch("setDialogVisible", true);
     },
-    fbup() {
-      
-      this.$store.dispatch('setDialogVisible',true)
+    Up() {
+      Object.keys(this.TmpSelectRows[0]).forEach(key => {
+        this.form[key] = this.TmpSelectRows[0][key];
+      });
+      this.$store.dispatch("setDialogVisible", true);
     },
-    fbsave(){
-
-      this.$store.dispatch('setDialogVisible',false)
+    async Save() {
+      // debugger;
+      const ResFrontBaseIns = await this.$Data.FrontBaseInsOrUp(this.form);
+      if (ResFrontBaseIns === 1) {
+        this.$message({
+          message: "数据添加成功！",
+          type: "success"
+        });
+        // console.log(this.form)
+        this.FormClear();
+        // console.log(this.form)
+      } else {
+        this.$message.error("数据添加失败！");
+      }
+      this.$store.dispatch("setDialogVisible", false);
+      this.GetFrontBase(this.ParamsPage);
     },
-    fbdel() {
+    Del() {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       })
         .then(() => {
-          this.$message({
-            type: "success",
-            message: "删除成功!"
+          console.log(this.TmpSelectRows);
+          Object.keys(this.TmpSelectRows).forEach(async key => {
+            console.log(key);
+            this.form.fbid = this.TmpSelectRows[key].fbid;
+            this.form.isdel = 0;
+            let ResFrontBaseIns = await this.$Data.FrontBaseInsOrUp(this.form);
           });
+          if (1 === 1) {
+            this.$message({message: "删除成功!",type: "success"});
+          } else {
+            this.$message.error("数据删除失败！");
+          }
         })
         .catch(() => {
           this.$message({
@@ -227,7 +293,9 @@ export default {
             message: "已取消删除"
           });
         });
-    },
+        this.FormClear();
+        this.GetFrontBase(this.ParamsPage);
+    }
   }
 };
 </script>
@@ -252,12 +320,12 @@ export default {
 .right {
   margin: 0 15px 0 15px;
 }
-.formfooter{
-    margin-top: 10px;
-    height: 80px;
-    padding-top: 20px;
-    margin: auto;
-    width: 100%;
-    text-align:center
+.formfooter {
+  margin-top: 10px;
+  height: 80px;
+  padding-top: 20px;
+  margin: auto;
+  width: 100%;
+  text-align: center;
 }
 </style>
