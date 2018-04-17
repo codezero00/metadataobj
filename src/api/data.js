@@ -85,9 +85,27 @@ class Data {
   // I U D
   //FrontBaseInsOrUp
   static FrontBaseInsOrUp(params){
+    console.log("FrontBaseInsOrUp")
     return request.post('FrontBaseInsOrUp',params)
   }
 
+  static ResourceBaseInsOrUp(params){
+    return request.post('ResourceBaseInsOrUp',params)
+  }
+
+  static DataLayerInsOrUp(params){
+    return request.post('DataLayerInsOrUp',params)
+  }
+
+  static DBTableInsOrUp(params){
+    return request.post('DBTableInsOrUp',params)
+  }
+
+  static ETLClientsInsOrUp(params){
+    return request.post('ETLClientsInsOrUp',params)
+  }
+
+  
 }
 
 export default Data

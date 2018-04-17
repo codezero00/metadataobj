@@ -1,15 +1,18 @@
 <template>
-  <el-dialog
-    :title="title"
-    :visible.sync="GolbalVisible"
-    width="30%"
-    :before-close="handleClose">
-    <div class="formcontent">
-      <!-- <iou-form></iou-form> -->
-      <render-form></render-form>
+  <transition name="fade" @after-leave="afterleave">
+    <div v-if="status">
+    <el-dialog
+      :title="title"
+      :visible.sync="GolbalVisible"
+      width="30%"
+      :before-close="handleClose">
+      <div class="formcontent">
+        <render-form></render-form>
+      </div>
+    </el-dialog>
     </div>
 
-  </el-dialog>
+  </transition>
 </template>
 
 <script>
@@ -72,6 +75,7 @@ export default {
   data() {
     return {
       title: this.inTitle,
+      status:true
       // dialogVisible: true
     };
   },
@@ -82,13 +86,19 @@ export default {
   },
   methods: {
     handleClose(done) {
+
       this.$confirm("确认关闭？")
         .then(_ => {
           store.dispatch('setDialogVisible',false)
+          // this.status=false
           // done();
         })
         .catch(_ => {});
     },
+    afterleave(){
+      // this.$emit("closed")
+      // this.status=false
+    }
   }
 };
 </script>

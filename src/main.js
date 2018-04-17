@@ -45,5 +45,8 @@ new Vue({
   template: '<App/>',
   components: {
     App
+  },
+  mounted(){
+    this.$iouform({ data: {}, propsData: {} });
   }
 })

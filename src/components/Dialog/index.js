@@ -22,7 +22,9 @@ var iouform = function(options){
     instance.vm = instance.$mount() 
     document.body.appendChild(instance.vm.$el) 
     // instance.vm.visible = true
-
+    // instance.vm.$on('closed',()=>{
+    //     instance.vm.$destroy()
+    // })
 
     return instance.vm;
 }

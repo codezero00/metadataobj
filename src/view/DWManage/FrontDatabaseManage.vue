@@ -6,8 +6,8 @@
       <div class="tab">
         <div class="tab_header">
           <el-button type="primary" @click="Ins" class="fb-btn" icon="el-icon-plus">添加</el-button>
-          <el-button type="primary" @click="Up"  class="fb-btn" icon="el-icon-edit" :disabled='UpButtionDisabled'>编辑</el-button>
-          <el-button type="warning" @click="Del" class="fb-btn" icon="el-icon-delete">删除</el-button>
+          <el-button type="primary" @click="Upd"  class="fb-btn" icon="el-icon-edit" :disabled='UpButtionDisabled'>编辑</el-button>
+          <el-button type="warning" @click="Del" class="fb-btn" icon="el-icon-delete" :disabled='DelButtionDisabled'>删除</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-upload">导入</el-button>
           <el-button type="success" class="fb-btn" icon="el-icon-download">导出</el-button>
         </div>
@@ -115,6 +115,16 @@
 export default {
   name: "FrontDatabaseManage",
   data() {
+    var validateName = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"));
+      } else {
+        if (this.form.checkPass !== "") {
+          this.$refs.form.validateField("checkName");
+        }
+        callback();
+      }
+    };
     return {
       FrontBaseData: [],
       ParamsPage: {
@@ -136,13 +146,16 @@ export default {
         updateuserid: "",
         isdel: 1
       },
+      rules: {
+        checkName: [{ validator: validateName, trigger: "blur" }]
+      },
       TmpSelectRows: [],
-      UpButtionDisabled: true
+      UpButtionDisabled: true,
+      DelButtionDisabled: true
     };
   },
   mounted() {
     this.GetFrontBase(this.ParamsPage);
-    this.InitDiaglog();
   },
   methods: {
     // test123(){
@@ -152,13 +165,16 @@ export default {
     // },
     SelectRows(selection, row) {
       this.TmpSelectRows = selection;
-      console.log(this.TmpSelectRows);
       if (this.TmpSelectRows.length === 1) {
         // this.$refs.UpButton.disabled=false;
         this.UpButtionDisabled = false;
       } else {
-        // this.$refs.UpButton.disabled=true;
         this.UpButtionDisabled = true;
+      }
+      if (this.TmpSelectRows.length > 0) {
+        this.DelButtionDisabled = false;
+      } else {
+        this.DelButtionDisabled = true;
       }
     },
     FormClear() {
@@ -170,18 +186,23 @@ export default {
       this.form.dept = "";
       this.form.effect = "";
       this.form.remark = "";
-      this.form.status = "";
+      this.form.status = "可用";
       this.form.createuserid = "";
       this.form.updateuserid = "";
       this.form.isdel = 1;
     },
     InitDiaglog() {
-      this.$iouform({ data: {}, propsData: {} });
+      // this.$iouform({ data: {}, propsData: {} });
       let xx = {
         propsData: {
           renderContent: (
-            <el-form ref="form" model={this.form} label-width="80px">
-              <el-form-item label="名称">
+            <el-form
+              ref="form"
+              model={this.form}
+              rules={this.rules}
+              label-width="80px"
+            >
+              <el-form-item label="名称" prop="checkName">
                 <el-input v-model={this.form.name} />
               </el-form-item>
               <el-form-item label="前置库IP">
@@ -242,25 +263,24 @@ export default {
     },
     Ins() {
       this.FormClear();
+      this.InitDiaglog();
       this.$store.dispatch("setDialogVisible", true);
     },
-    Up() {
+    Upd() {
       Object.keys(this.TmpSelectRows[0]).forEach(key => {
         this.form[key] = this.TmpSelectRows[0][key];
       });
+      this.InitDiaglog();
       this.$store.dispatch("setDialogVisible", true);
     },
     async Save() {
-      // debugger;
       const ResFrontBaseIns = await this.$Data.FrontBaseInsOrUp(this.form);
       if (ResFrontBaseIns === 1) {
         this.$message({
           message: "数据添加成功！",
           type: "success"
         });
-        // console.log(this.form)
         this.FormClear();
-        // console.log(this.form)
       } else {
         this.$message.error("数据添加失败！");
       }
@@ -274,27 +294,34 @@ export default {
         type: "warning"
       })
         .then(() => {
-          console.log(this.TmpSelectRows);
+          // console.log("begin TmpSelectRows");
+          // console.log(this.TmpSelectRows);
           Object.keys(this.TmpSelectRows).forEach(async key => {
-            console.log(key);
-            this.form.fbid = this.TmpSelectRows[key].fbid;
-            this.form.isdel = 0;
-            let ResFrontBaseIns = await this.$Data.FrontBaseInsOrUp(this.form);
+            const fbid = await this.TmpSelectRows[key].fbid;
+            // this.form.isdel = 0;
+            const delform = {
+              fbid: fbid,
+              isdel: 0
+            };
+            // // debugger;
+            // console.log(delform);
+            const ResFrontBaseIns = await this.$Data.FrontBaseInsOrUp(delform);
+            if (ResFrontBaseIns === 1) {
+              this.$message({ message: "删除成功!", type: "success" });
+            } else {
+              this.$message.error("数据删除失败！");
+            }
+            this.GetFrontBase(this.ParamsPage);
+            // console.log("end TmpSelectRows");
           });
-          if (1 === 1) {
-            this.$message({message: "删除成功!",type: "success"});
-          } else {
-            this.$message.error("数据删除失败！");
-          }
         })
-        .catch(() => {
+        .catch(err => {
           this.$message({
             type: "info",
-            message: "已取消删除"
+            message: err //"已取消删除"
           });
         });
-        this.FormClear();
-        this.GetFrontBase(this.ParamsPage);
+      this.FormClear();
     }
   }
 };

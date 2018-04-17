@@ -1,33 +1,56 @@
-<template>
-<el-row type="flex" class="row-bg">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="18"><div class="grid-content bg-purple-light"></div></el-col>
-</el-row>
-</template>
+// JSX测试
 
+<script>
+export default {
+  data() {
+    return {
+      msg: "Hello JSX",
+      radioModel: "1234",
+      label: "123"
+    };
+  },
+  methods: {
+    hello() {
+      alert("Hello Vue 2.0");
+      this.msg='okkkkkkk'
+    }
+  },
+  render(h) {
+    const data = {
+      attrs: {
+        id: "hehe"
+      },
+      on: {
+        click: () => {
+          console.log("click");
+        }
+      },
+      props: {
+        innerHTML: "hihihi"
+      },
+      hook: {
+        insert: () => {
+          console.log("insert");
+        }
+      }
+    };
+    // return <div href="hoho" {...data}/>
+    return (
+      <div id="hi">
+        <span
+          class={{ a: true, b: true }}
+          style={{ fontSize: "15px" }}
+          on-click={this.hello}
+          {...data}
+        >
+          {this.msg}
+        </span>
+      </div>
+    );
+  }
+};
+</script>
 
 <style scoped>
-  .el-row {
-    margin-bottom: 20px;
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
+
 </style>
