@@ -215,6 +215,8 @@ export default {
     Ins() {
       this.FormClear();
       this.InitDiaglog();
+      this.$store.dispatch("setDialogTitle", "插入");
+      this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
     },
     Upd() {
@@ -229,6 +231,8 @@ export default {
       this.form.tel = this.TmpSelectRows[0].LXFS;
       this.form.status = this.TmpSelectRows[0].ZT;
       this.InitDiaglog();
+      this.$store.dispatch("setDialogTitle", "更新");
+      this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
     },
     async Save() {

@@ -82,6 +82,26 @@ class Data {
     return request.get('etljobs')
   }
 
+  //EtlJobLog
+  static etljoblog(params){
+    return request.get('EtlJobLog',{'Url':params.Url,'JobName':params.JobName})
+  }
+
+  //bloodrelation
+  static BloodRelation(params){
+    return request.get('BloodRelationQuery',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
+  }
+
+  //bloodrelation
+  static BloodVertexEdge(params){
+    return request.get('BloodVertexEdgeQuery')
+  }
+
+  //DBTableColumnTree
+  static DBTableColumnTree(params){
+    return request.get('DBTableColumnTreeQuery')
+  }
+
   // I U D
   //FrontBaseInsOrUp
   static FrontBaseInsOrUp(params){
@@ -105,6 +125,9 @@ class Data {
     return request.post('ETLClientsInsOrUp',params)
   }
 
+  static BloodRrlationInsOrUp(params){
+    return request.post('BloodRrlationInsOrUp',params)
+  }
   
 }
 

@@ -211,6 +211,8 @@ export default {
     Ins() {
       this.FormClear();
       this.InitDiaglog();
+      this.$store.dispatch("setDialogTitle", "插入");
+      this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
     },
     Upd() {
@@ -226,6 +228,8 @@ export default {
       this.form.createuserid = this.TmpSelectRows[0].createuserid;
       this.form.updateuserid = this.TmpSelectRows[0].updateuserid;
       this.InitDiaglog();
+      this.$store.dispatch("setDialogTitle", "更新");
+      this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
     },
     async Save() {

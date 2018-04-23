@@ -2,9 +2,9 @@
   <transition name="fade" @after-leave="afterleave">
     <div v-if="status">
     <el-dialog
-      :title="title"
+      :title="DialogTitle"
       :visible.sync="GolbalVisible"
-      width="30%"
+      :width="DialogWidth"
       :before-close="handleClose">
       <div class="formcontent">
         <render-form></render-form>
@@ -40,7 +40,7 @@ export default {
       // },
       computed: {
         RenderContent2(){
-          return this.$store.getters.diaglogrender
+          return this.$store.getters.dialogrender
         }
       },
       render:function(h){
@@ -75,14 +75,21 @@ export default {
   data() {
     return {
       title: this.inTitle,
-      status:true
+      status:true,
+      lswidth: '80%',
       // dialogVisible: true
-    };
+    }
   },
   computed: {
     GolbalVisible() {
       return store.getters.gbdiaglog
     },
+    DialogWidth(){
+      return store.getters.dialogwidth
+    },
+    DialogTitle(){
+      return store.getters.dialogtitle
+    }
   },
   methods: {
     handleClose(done) {

@@ -9,6 +9,13 @@ import 'normalize.css/normalize.css'; // normalize.css 样式格式化
 import '@/styles/index.scss'; // 全局自定义的css样式
 import 'font-awesome/css/font-awesome.css'
 
+// // 注册全局组件
+// import TreeSelect from "@riophae/vue-treeselect";
+import '@riophae/vue-treeselect/dist/vue-treeselect.min.css'
+// Vue.component('tree-select',TreeSelect)
+// // 注册全局组件END
+
+
 import './permission'
 import './icons' // icon
 import i18n from './lang' // Internationalization

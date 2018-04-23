@@ -25,12 +25,21 @@
               align=center
               >
             </el-table-column>
-    <el-table-column
+    <!-- <el-table-column
       prop="jobnum"
       label="作业编号"
       sortable
       align=center
       >
+    </el-table-column> -->
+    <el-table-column
+      label="作业编号"
+      sortable
+      align=center
+      >
+      <template slot-scope="scope">
+        <el-button @click="jobdetail(scope.row)" type="text" size="small">{{scope.row.jobnum}}</el-button>
+      </template>
     </el-table-column>
     <el-table-column
       prop="name"
@@ -106,22 +115,80 @@
 export default {
   data() {
     return {
-      etljobsdata: []
+      etljobsdata: [],
+      EtlJobLogData: null,
+      joblogparams: {
+        Url: null,
+        JobName: null
+      }
     };
   },
 
   mounted() {
     this.getjobs();
-    // (async () => {
-    //   const dbmanage = await this.$Data.dbmanage();
-    //   console.log(dbmanage)
-    //   this.dbmanagedata = dbmanage;
-    // })();
   },
-  methods:{
-    async getjobs(){
+  methods: {
+    async getjobs() {
       const etljobs = await this.$Data.etljobs();
       this.etljobsdata = etljobs;
+    },
+    async GetJobLog() {
+      const etljoblog = await this.$Data.etljoblog(this.joblogparams);
+      // this.EtlJobLogData = etljoblog;
+      return etljoblog
+    },
+    async jobdetail(value) {
+      console.log(value);
+      this.joblogparams.Url=value.url;
+      this.joblogparams.JobName=value.name;
+      this.EtlJobLogData = await this.GetJobLog()
+      this.InitDiaglog(value);
+      this.$store.dispatch("setDialogTitle", "作业详情");
+      this.$store.dispatch("setDialogWidth", "60%");
+      this.$store.dispatch("setDialogVisible", true);
+    },
+    InitDiaglog(value) {
+      let imgsrc =
+        "//127.0.0.1:9000/api/v1/EtlJobImage?Url=" +
+        value.url +
+        "&Jobid=" +
+        value.jobnum;
+      let xx = {
+        propsData: {
+          renderContent: (
+            <el-form ref="form" label-width="80px">
+              <el-form-item label="作业名称">{value.name}</el-form-item>
+              <el-form-item label="作业描述">{value.remark}</el-form-item>
+              <el-form-item label="作业状态">
+                <slot>
+                  <el-tag
+                    type={value.status === "Running" ? "success" : "danger"}
+                    close-transition
+                  >
+                    {value.status}
+                  </el-tag>
+                </slot>
+              </el-form-item>
+              <el-form-item label="作业模型">
+                <img src={imgsrc} />
+              </el-form-item>
+              <el-form-item label="运行日志">
+                {this.EtlJobLogData}
+              </el-form-item>
+              <div class="formfooter">
+                <el-button
+                  nativeOnClick={() =>
+                    this.$store.dispatch("setDialogVisible", false)
+                  }
+                >
+                  取消
+                </el-button>
+              </div>
+            </el-form>
+          )
+        }
+      };
+      this.$store.dispatch("setrender", xx.propsData.renderContent);
     }
   }
 };
@@ -148,5 +215,4 @@ export default {
 .right {
   margin: 0 15px 0 15px;
 }
-
 </style>

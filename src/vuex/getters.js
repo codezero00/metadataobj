@@ -8,7 +8,9 @@ const getters = {
     avatar: state => state.user.image,
     name: state => state.user.name,
     gbdiaglog: state => state.pub.DialogGolbalVisible,
-    diaglogrender: state => state.pub.DialogRenderContent
+    dialogrender: state => state.pub.DialogRenderContent,
+    dialogwidth: state => state.pub.DialogAttr.Width,
+    dialogtitle: state => state.pub.DialogAttr.Title
   }
   export default getters
   

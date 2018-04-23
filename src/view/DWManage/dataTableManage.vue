@@ -221,10 +221,12 @@ export default {
     Ins() {
       this.FormClear();
       this.InitDiaglog();
+      this.$store.dispatch("setDialogTitle", "插入");
+      this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
     },
     Upd() {
-      
+      this.form.tabid = this.TmpSelectRows[0].tabid;
       this.form.rbid = this.TmpSelectRows[0].rbid;
       this.form.dlid = this.TmpSelectRows[0].dlid;
       this.form.tablenameyw = this.TmpSelectRows[0].tablenameyw;
@@ -232,6 +234,8 @@ export default {
       this.form.remark = this.TmpSelectRows[0].remark;
 
       this.InitDiaglog();
+      this.$store.dispatch("setDialogTitle", "更新");
+      this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
     },
     async Save() {

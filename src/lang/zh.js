@@ -1,6 +1,6 @@
 export default {
   route: {
-    dashboard: '系统维护子系统',
+    dashboard: '智云数据基础平台',
     introduction: '简述',
     documentation: '文档',
     permission: '权限测试页',
@@ -84,6 +84,7 @@ export default {
     dataline:'数据变迁时间轴',
     //
     datarelatedmanage:'数据血缘',
+    RelatedManage:'血缘管理',
     relatedanalyze:'血缘分析',
     relatedgraph:'血缘图谱',
     //

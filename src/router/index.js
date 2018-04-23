@@ -1,18 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/view/login'
-//
+//layout 布局
 import Layout from '@/view/layout/Layout'
 import home from '@/view/home'
 //
 import articlelist from '@/view/article/list.vue'
 import createarticle from '@/view/article/create.vue'
 import editarticle from '@/view/article/edit.vue'
-//
+//元数据模块
 import metadataclass from '@/view/MetaDataManage/metadataclass.vue'
 import metadatadetail from '@/view/MetaDataManage/metadatadetail.vue'
 import metadatasearch from '@/view/MetaDataManage/metadatasearch.vue'
-//
+//数据仓库管理
 import FrontDatabaseManage from '@/view/DWManage/FrontDatabaseManage.vue'  // 前置库
 import ResourceManage from '@/view/DWManage/ResourceManage.vue'  // 资源库与分层
 import LayerManage from '@/view/DWManage/LayerManage.vue'  // 资源库与分层
@@ -23,29 +23,30 @@ import shareindex from '@/view/DWManage/shareindex.vue' // 共享目录
 //
 import odsregister from '@/view/ODSManage/odsregister.vue'
 import odsdelete from '@/view/ODSManage/odsdelete.vue'
-//
+//任务调度管理
 import clientregister from '@/view/TaskSchedulingManage/clientregister.vue'
 import jobmonitoring from '@/view/TaskSchedulingManage/jobmonitoring.vue'
 import jobmanage from '@/view/TaskSchedulingManage/jobmanage.vue'
 import joblog from '@/view/TaskSchedulingManage/joblog.vue'
-//
+//数据质量检查
 import datacheck from '@/view/DataQualityManage/datacheck.vue'
 import datacheckrule from '@/view/DataQualityManage/datacheckrule.vue'
-//
+//生命周期
 import tablelifecycle from '@/view/DataLifecycleManage/tablelifecycle.vue'
 import viewlifecycle from '@/view/DataLifecycleManage/viewlifecycle.vue'
 import dataline from '@/view/DataLifecycleManage/dataline.vue'
-//
-import relatedanalyze from '@/view/DataRelatedManage/relatedanalyze.vue'
-import relatedgraph from '@/view/DataRelatedManage/relatedgraph.vue'
-//
+//数据血缘
+import RelatedManage from '@/view/DataRelatedManage/RelatedManage.vue'
+import RelatedAnalyze from '@/view/DataRelatedManage/RelatedAnalyze.vue'
+import RelatedGraph from '@/view/DataRelatedManage/RelatedGraph.vue'
+//非结构化数据管理
 import nosqldatabasemanage from '@/view/NoSQLManage/databasemanage.vue'
 import nosqlclassmanage from '@/view/NoSQLManage/classmanage.vue'
 import nosqlindexmanage from '@/view/NoSQLManage/indexmanage.vue'
 import nosqladvancedsearch from '@/view/NoSQLManage/advancedsearch.vue'
 import nosqlvisualstatistics from '@/view/NoSQLManage/visualstatistics.vue'
 import nosqllog from '@/view/NoSQLManage/nosqllog.vue'
-//
+//数据模型管理
 import modelregister from '@/view/DataModelManage/modelregister'
 import modelvisual from '@/view/DataModelManage/modelvisual'
 import modelmonitor from '@/view/DataModelManage/modelmonitor'
@@ -54,6 +55,9 @@ import vedioanlyzemanage from '@/view/DataModelManage/vedioanlyzemanage'
 import graphmodelmanage from '@/view/DataModelManage/graphmodelmanage'
 import modelstatistics from '@/view/DataModelManage/modelstatistics'
 import modellog from '@/view/DataModelManage/modellog'
+//test
+import selecttree from '@/view/test/treeselect'
+
 //
 Vue.use(Router)
 
@@ -181,21 +185,21 @@ export const constrouterMap = [{
       {path: 'datacheckrule', component: datacheckrule, name: 'datacheckrule', meta: {title: 'datacheckrule',icon: 'dot',noCache: false}}, 
     ]
   },
-
-  {
-    path: '/datalifecyclemanage',
-    component: Layout,
-    // redirect: '/documentation/index',
-    meta: {
-      title: 'datalifecyclemanage',
-      icon: 'documentation'
-    }, 
-    children: [
-      {path: 'tablelifecycle', component: tablelifecycle, name: 'tablelifecycle', meta: {title: 'tablelifecycle',icon: 'dot',noCache: false}},
-      {path: 'viewlifecycle', component: viewlifecycle, name: 'viewlifecycle', meta: {title: 'viewlifecycle',icon: 'dot',noCache: false}}, 
-      {path: 'dataline', component: dataline, name: 'dataline', meta: {title: 'dataline',icon: 'dot',noCache: false}}, 
-    ]
-  },
+  // 数据生命周期
+  // {
+  //   path: '/datalifecyclemanage',
+  //   component: Layout,
+  //   // redirect: '/documentation/index',
+  //   meta: {
+  //     title: 'datalifecyclemanage',
+  //     icon: 'documentation'
+  //   }, 
+  //   children: [
+  //     {path: 'tablelifecycle', component: tablelifecycle, name: 'tablelifecycle', meta: {title: 'tablelifecycle',icon: 'dot',noCache: false}},
+  //     {path: 'viewlifecycle', component: viewlifecycle, name: 'viewlifecycle', meta: {title: 'viewlifecycle',icon: 'dot',noCache: false}}, 
+  //     {path: 'dataline', component: dataline, name: 'dataline', meta: {title: 'dataline',icon: 'dot',noCache: false}}, 
+  //   ]
+  // },
 
   {
     path: '/datarelatedmanage',
@@ -206,8 +210,9 @@ export const constrouterMap = [{
       icon: 'documentation'
     }, 
     children: [
-      {path: 'relatedanalyze', component: relatedanalyze, name: 'relatedanalyze', meta: {title: 'relatedanalyze',icon: 'dot',noCache: false}},
-      {path: 'relatedgraph', component: relatedgraph, name: 'relatedgraph', meta: {title: 'relatedgraph',icon: 'dot',noCache: false}}, 
+      {path: 'RelatedManage', component: RelatedManage, name: 'RelatedManage', meta: {title: 'RelatedManage',icon: 'dot',noCache: false}},
+      {path: 'relatedanalyze', component: RelatedAnalyze, name: 'relatedanalyze', meta: {title: 'relatedanalyze',icon: 'dot',noCache: false}},
+      {path: 'relatedgraph', component: RelatedGraph, name: 'relatedgraph', meta: {title: 'relatedgraph',icon: 'dot',noCache: false}}, 
    ]
   },
 
@@ -250,7 +255,18 @@ export const constrouterMap = [{
 
     ]
   },
-
+// tset
+  {
+    path: '/tset',
+    component: Layout,
+    meta: {
+      title: 'test',
+      icon: 'test'
+    }, 
+    children: [
+      {path: 'selecttree', component: selecttree, name: 'selecttree', meta: {title: 'selecttree',icon: 'dot',noCache: false}},
+    ]
+  },
 
 ]
 

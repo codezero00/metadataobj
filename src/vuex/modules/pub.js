@@ -12,9 +12,19 @@ const pub = {
     },
     visitedViews: [],
     DialogGolbalVisible: false,
-    DialogRenderContent: null
+    DialogRenderContent: null,
+    DialogAttr:{
+      Width:"30%",
+      Title:"模态框"
+    }
   },
   mutations: {
+    SET_DIALOGTITLE(state, val) {
+      state.DialogAttr.Title = val
+    },
+    SET_DIALOGWIDTH(state, val) {
+      state.DialogAttr.Width = val
+    },
     SET_RENDER(state, val) {
       state.DialogRenderContent = val
     },
@@ -57,6 +67,12 @@ const pub = {
     }
   },
   actions: {
+    setDialogTitle({commit}, val) {
+      commit('SET_DIALOGTITLE', val)
+    },
+    setDialogWidth({commit}, val) {
+      commit('SET_DIALOGWIDTH', val)
+    },
     setrender({commit}, val) {
       commit('SET_RENDER', val)
     },
