@@ -11,7 +11,7 @@
         :data="treedata"
         :props="defaultProps"
         node-key="id"
-        :default-expanded-keys="['GH']"
+        :default-expanded-keys="['2f8daa54-4927-11e8-aa05-000c2958c75b']"
         :filter-node-method="filterNode"
         @node-click="nodeclick"
         :expand-on-click-node="false"
@@ -83,6 +83,7 @@
         :data="metadatadetail"
         border
         fit
+        height="600px"
         style="width: 100%;">
         <el-table-column
           label="操作"
@@ -169,6 +170,7 @@
       <el-table
         :data="downmetadataclass"
         border
+        height="600px"
         style="width: 100%">
         <el-table-column
           prop="FLMC"
@@ -280,26 +282,27 @@ export default {
 .el-row {
   margin-bottom: 20px;
   min-height: 500px;
-  padding: 10px 0;
 }
 .el-col {
   border-radius: 4px;
 }
-.left {
-  /* background: #99a9bf; */
-  margin: 0 15px 0 15px;
-}
+
 .fltag {
   margin-bottom: 20px;
   border-bottom: #d3dce6 solid 1px;
   /* float: left; */
 }
 .right {
-  margin: 0 15px 0 0;
+  height: 840px;
+  position: relative;
+  margin-top: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: #dadddf 14px 14px 20px;
 }
-</style>
 
-<style>
 .filter-tree {
   font-size: 13px;
 }

@@ -16,7 +16,7 @@
             :data="etljobsdata"
             border
             stripe
-            height=450
+            height=680
             style="width: 100%"
             >
             <el-table-column
@@ -173,7 +173,13 @@ export default {
                 <img src={imgsrc} />
               </el-form-item>
               <el-form-item label="运行日志">
-                {this.EtlJobLogData}
+
+                <el-input
+                  type="textarea"
+                  autosize="{ minRows: 2, maxRows: 4}"
+                  disabled="true"
+                  v-model={this.EtlJobLogData}>
+                </el-input>
               </el-form-item>
               <div class="formfooter">
                 <el-button
@@ -198,7 +204,6 @@ export default {
 .el-row {
   margin-bottom: 20px;
   min-height: 500px;
-  padding: 10px 0;
 }
 .el-col {
   border-radius: 4px;
@@ -213,6 +218,7 @@ export default {
   height: 45px;
 }
 .right {
+  height: 800px;
   margin: 0 15px 0 15px;
 }
 </style>

@@ -111,7 +111,7 @@ export const constrouterMap = [{
     children: [
       {path: 'class', component: metadataclass,name: 'metadataclass',meta: {title: 'metadataclass',icon: 'dot',noCache: false}},
       {path: 'detail', component: metadatadetail,name: 'metadatadetail',meta: {title: 'metadatadetail',icon: 'dot',noCache: false}},
-      {path: 'createarticle', component: createarticle,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
+      // {path: 'createarticle', component: createarticle,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
       
     ]
   },
@@ -211,7 +211,7 @@ export const constrouterMap = [{
     }, 
     children: [
       {path: 'RelatedManage', component: RelatedManage, name: 'RelatedManage', meta: {title: 'RelatedManage',icon: 'dot',noCache: false}},
-      {path: 'relatedanalyze', component: RelatedAnalyze, name: 'relatedanalyze', meta: {title: 'relatedanalyze',icon: 'dot',noCache: false}},
+      // {path: 'relatedanalyze', component: RelatedAnalyze, name: 'relatedanalyze', meta: {title: 'relatedanalyze',icon: 'dot',noCache: false}},
       {path: 'relatedgraph', component: RelatedGraph, name: 'relatedgraph', meta: {title: 'relatedgraph',icon: 'dot',noCache: false}}, 
    ]
   },
@@ -235,38 +235,38 @@ export const constrouterMap = [{
     ]
   },
   
-  {
-    path: '/datamodelmanage',
-    component: Layout,
-    // redirect: '/documentation/index',
-    meta: {
-      title: 'datamodelmanage',
-      icon: 'documentation'
-    }, 
-    children: [
-      {path: 'modelregister', component: modelregister, name: 'modelregister', meta: {title: 'modelregister',icon: 'dot',noCache: false}},
-      {path: 'modelvisual', component: modelvisual, name: 'modelvisual', meta: {title: 'modelvisual',icon: 'dot',noCache: false}}, 
-      {path: 'modelmonitor', component: modelmonitor, name: 'modelmonitor', meta: {title: 'modelmonitor',icon: 'dot',noCache: false}}, 
-      {path: 'mlmodelmanage', component: mlmodelmanage, name: 'mlmodelmanage', meta: {title: 'mlmodelmanage',icon: 'dot',noCache: false}}, 
-      {path: 'vedioanlyzemanage', component: vedioanlyzemanage, name: 'vedioanlyzemanage', meta: {title: 'vedioanlyzemanage',icon: 'dot',noCache: false}}, 
-      {path: 'graphmodelmanage', component: graphmodelmanage, name: 'graphmodelmanage', meta: {title: 'graphmodelmanage',icon: 'dot',noCache: false}}, 
-      {path: 'modelstatistics', component: modelstatistics, name: 'modelstatistics', meta: {title: 'modelstatistics',icon: 'dot',noCache: false}}, 
-      {path: 'modellog', component: modellog, name: 'modellog', meta: {title: 'modellog',icon: 'dot',noCache: false}}, 
+  // {
+  //   path: '/datamodelmanage',
+  //   component: Layout,
+  //   // redirect: '/documentation/index',
+  //   meta: {
+  //     title: 'datamodelmanage',
+  //     icon: 'documentation'
+  //   }, 
+  //   children: [
+  //     {path: 'modelregister', component: modelregister, name: 'modelregister', meta: {title: 'modelregister',icon: 'dot',noCache: false}},
+  //     {path: 'modelvisual', component: modelvisual, name: 'modelvisual', meta: {title: 'modelvisual',icon: 'dot',noCache: false}}, 
+  //     {path: 'modelmonitor', component: modelmonitor, name: 'modelmonitor', meta: {title: 'modelmonitor',icon: 'dot',noCache: false}}, 
+  //     {path: 'mlmodelmanage', component: mlmodelmanage, name: 'mlmodelmanage', meta: {title: 'mlmodelmanage',icon: 'dot',noCache: false}}, 
+  //     {path: 'vedioanlyzemanage', component: vedioanlyzemanage, name: 'vedioanlyzemanage', meta: {title: 'vedioanlyzemanage',icon: 'dot',noCache: false}}, 
+  //     {path: 'graphmodelmanage', component: graphmodelmanage, name: 'graphmodelmanage', meta: {title: 'graphmodelmanage',icon: 'dot',noCache: false}}, 
+  //     {path: 'modelstatistics', component: modelstatistics, name: 'modelstatistics', meta: {title: 'modelstatistics',icon: 'dot',noCache: false}}, 
+  //     {path: 'modellog', component: modellog, name: 'modellog', meta: {title: 'modellog',icon: 'dot',noCache: false}}, 
 
-    ]
-  },
+  //   ]
+  // },
 // tset
-  {
-    path: '/tset',
-    component: Layout,
-    meta: {
-      title: 'test',
-      icon: 'test'
-    }, 
-    children: [
-      {path: 'selecttree', component: selecttree, name: 'selecttree', meta: {title: 'selecttree',icon: 'dot',noCache: false}},
-    ]
-  },
+  // {
+  //   path: '/tset',
+  //   component: Layout,
+  //   meta: {
+  //     title: 'test',
+  //     icon: 'test'
+  //   }, 
+  //   children: [
+  //     {path: 'selecttree', component: selecttree, name: 'selecttree', meta: {title: 'selecttree',icon: 'dot',noCache: false}},
+  //   ]
+  // },
 
 ]
 

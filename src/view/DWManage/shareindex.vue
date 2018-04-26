@@ -153,7 +153,6 @@ export default {
 .el-row {
   margin-bottom: 20px;
   min-height: 500px;
-  padding: 10px 0;
 }
 .el-col {
   border-radius: 4px;
@@ -163,10 +162,17 @@ export default {
   margin: 0 15px 0 15px;
 }
 .fltag {
-  margin-bottom: 20px;
-  border-bottom: #d3dce6 solid 1px;
+  /* margin-bottom: 20px;
+  border-bottom: #d3dce6 solid 1px; */
 }
 .right {
-  margin: 0 15px 0 0;
+  height: 840px;
+  position: relative;
+  margin-top: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: #dadddf 14px 14px 20px;
 }
 </style>

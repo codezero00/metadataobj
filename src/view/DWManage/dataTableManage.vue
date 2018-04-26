@@ -2,7 +2,7 @@
 	<el-row type="flex" class="row-bg">
 		<el-col :span="24">
 			<div class="grid-content right">
-				<div class="search">
+				<!-- <div class="search">
 					<el-input placeholder="请输入内容" suffix-icon="el-icon-search" ></el-input>
 					<el-input placeholder="请输入内容" suffix-icon="el-icon-search" ></el-input>
 					<el-input placeholder="请输入内容" suffix-icon="el-icon-search" ></el-input>
@@ -11,7 +11,7 @@
 					<el-input placeholder="请输入内容" suffix-icon="el-icon-search" ></el-input>
 					<el-button type="primary" icon="el-icon-search" class="sac">搜索</el-button>
 					<el-button type="text">高级搜索</el-button>
-				</div>
+				</div> -->
 
 				<div class="tab">
 					<div class="tab_header">
@@ -25,7 +25,7 @@
 						<el-table :data="DBTableData.res" 
 						border 
 						stripe 
-						height=450 
+						height=680
 						style="width: 100%"
             @select='SelectRows'
             >
@@ -292,7 +292,6 @@ export default {
 .el-row {
   margin-bottom: 20px;
   min-height: 500px;
-  padding: 10px 0;
 }
 
 .el-col {

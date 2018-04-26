@@ -3,6 +3,7 @@
     <el-table
       :data="currentList"
       border
+      height="520"
       style="width: 100%">
       <el-table-column
         prop="ZDMC"

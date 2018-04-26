@@ -58,7 +58,7 @@
   </div>
   <div v-else>
 
-    <el-card class="box-card">
+<div class="box-card">
       <p>
         <span>所属资源库:  {{dbtabletitle.resname}}</span>
         <span style="margin-left:220px">所属数据层:  {{dbtabletitle.dlname}}</span>
@@ -75,7 +75,7 @@
         <span>描述:  {{dbtabletitle.remark}}</span>
       </p>
 
-    </el-card>
+</div>
 
     <el-tabs type="border-card">
       <el-tab-pane label="表详情"><detail ref="detail" v-bind:current-list="dbtablecolumnlist"></detail></el-tab-pane>
@@ -175,16 +175,22 @@ export default {
 .el-row {
   margin-bottom: 20px;
   min-height: 500px;
-  padding: 10px 0;
 }
 .el-col {
   border-radius: 4px;
 }
 .fltag {
-  margin-bottom: 20px;
-  border-bottom: #d3dce6 solid 1px;
+  /* margin-bottom: 20px;
+  border-bottom: #d3dce6 solid 1px; */
 }
 .right {
-  margin: 0 15px 0 0;
+  height: 840px;
+  position: relative;
+  margin-top: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: #dadddf 14px 14px 20px;
 }
 </style>

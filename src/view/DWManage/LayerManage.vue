@@ -16,7 +16,7 @@
             :data="DataLayerData.res"
             border
             stripe
-            height=450
+            height=680
             style="width: 100%"
             @select='SelectRows'
             >
@@ -286,7 +286,6 @@ export default {
 .el-row {
   margin-bottom: 20px;
   height: 333px;
-  padding: 10px 0;
 }
 .el-col {
   border-radius: 4px;

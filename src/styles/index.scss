@@ -197,6 +197,7 @@ code {
 
 // table related
 .tab{
+  height: 840px;
   position: relative;
   margin-top:20px;
   padding: 20px;
@@ -226,7 +227,8 @@ code {
 // }
 
 .left {
-  margin: 0 15px 0 15px;
+  height: 840px;
+  margin: 20px 15px 0 15px;
   background-color: white;
   padding: 20px;
   border-radius: 10px;

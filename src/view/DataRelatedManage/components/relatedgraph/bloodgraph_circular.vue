@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :id="id" style="width:1500px;height:800px"></div>
+  <div :class="className" :id="id" style="width:100%;height:800px"></div>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
     },
     id: {
         type: String,
-        default: "chartbloodgraph"
+        default: "chartbloodgraphcircular"
     },
     width: {
         type: String,
@@ -53,7 +53,10 @@ export default {
             series : [
                 {
                     type: 'graph',
-                    layout: 'force',
+                    layout: 'circular',
+                    circular: {
+                        rotateLabel: true
+                    },
                     progressiveThreshold: 700,
                     data: this.vertex.map(function (vertex) {
                         return {
@@ -63,7 +66,8 @@ export default {
                             name: vertex.NAME,
                             label: {
                                 normal: {
-                                    show: vertex.TYPE == "table",
+                                    //show: vertex.TYPE == "table",
+                                    show:true,
                                     position: 'right',
                                 },
                                 emphasis: {
@@ -93,6 +97,13 @@ export default {
                     // },
                     roam: true,
                     focusNodeAdjacency: true,
+                    // lineStyle: {
+                    //     normal: {
+                    //         width: 0.5,
+                    //         curveness: 0.3,
+                    //         opacity: 0.7
+                    //     }
+                    // },
                     lineStyle: {
                         normal: {
                             color: 'source',
@@ -101,7 +112,7 @@ export default {
                     },
                     force: {
                         edgeLength: 5,
-                        repulsion: 100,
+                        repulsion: 20,
                         gravity: 0.2
                     },
                     draggable:true
