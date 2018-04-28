@@ -149,7 +149,7 @@ export default {
     },
     InitDiaglog(value) {
       let imgsrc =
-        "//127.0.0.1:9000/api/v1/EtlJobImage?Url=" +
+        "//172.16.1.13:9000/api/v1/EtlJobImage?Url=" +
         value.url +
         "&Jobid=" +
         value.jobnum;

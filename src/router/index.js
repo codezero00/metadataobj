@@ -111,7 +111,7 @@ export const constrouterMap = [{
     children: [
       {path: 'class', component: metadataclass,name: 'metadataclass',meta: {title: 'metadataclass',icon: 'dot',noCache: false}},
       {path: 'detail', component: metadatadetail,name: 'metadatadetail',meta: {title: 'metadatadetail',icon: 'dot',noCache: false}},
-      // {path: 'createarticle', component: createarticle,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
+      {path: 'createarticle', component: createarticle,name: 'metadatasearch',meta: {title: 'metadatasearch',icon: 'documentation',noCache: false}}
       
     ]
   },
@@ -227,10 +227,10 @@ export const constrouterMap = [{
     children: [
       {path: 'nosqldatabasemanage', component: nosqldatabasemanage, name: 'nosqldatabasemanage', meta: {title: 'nosqldatabasemanage',icon: 'dot',noCache: false}},
       {path: 'nosqlclassmanage', component: nosqlclassmanage, name: 'nosqlclassmanage', meta: {title: 'nosqlclassmanage',icon: 'dot',noCache: false}}, 
-      {path: 'nosqlindexmanage', component: nosqlindexmanage, name: 'nosqlindexmanage', meta: {title: 'nosqlindexmanage',icon: 'dot',noCache: false}}, 
+      //{path: 'nosqlindexmanage', component: nosqlindexmanage, name: 'nosqlindexmanage', meta: {title: 'nosqlindexmanage',icon: 'dot',noCache: false}}, 
       {path: 'nosqladvancedsearch', component: nosqladvancedsearch, name: 'nosqladvancedsearch', meta: {title: 'nosqladvancedsearch',icon: 'dot',noCache: false}}, 
       {path: 'nosqlvisualstatistics', component: nosqlvisualstatistics, name: 'nosqlvisualstatistics', meta: {title: 'nosqlvisualstatistics',icon: 'dot',noCache: false}}, 
-      {path: 'nosqllog', component: nosqllog, name: 'nosqllog', meta: {title: 'nosqllog',icon: 'dot',noCache: false}}, 
+      //{path: 'nosqllog', component: nosqllog, name: 'nosqllog', meta: {title: 'nosqllog',icon: 'dot',noCache: false}}, 
 
     ]
   },
@@ -244,14 +244,14 @@ export const constrouterMap = [{
   //     icon: 'documentation'
   //   }, 
   //   children: [
-  //     {path: 'modelregister', component: modelregister, name: 'modelregister', meta: {title: 'modelregister',icon: 'dot',noCache: false}},
-  //     {path: 'modelvisual', component: modelvisual, name: 'modelvisual', meta: {title: 'modelvisual',icon: 'dot',noCache: false}}, 
-  //     {path: 'modelmonitor', component: modelmonitor, name: 'modelmonitor', meta: {title: 'modelmonitor',icon: 'dot',noCache: false}}, 
-  //     {path: 'mlmodelmanage', component: mlmodelmanage, name: 'mlmodelmanage', meta: {title: 'mlmodelmanage',icon: 'dot',noCache: false}}, 
-  //     {path: 'vedioanlyzemanage', component: vedioanlyzemanage, name: 'vedioanlyzemanage', meta: {title: 'vedioanlyzemanage',icon: 'dot',noCache: false}}, 
-  //     {path: 'graphmodelmanage', component: graphmodelmanage, name: 'graphmodelmanage', meta: {title: 'graphmodelmanage',icon: 'dot',noCache: false}}, 
-  //     {path: 'modelstatistics', component: modelstatistics, name: 'modelstatistics', meta: {title: 'modelstatistics',icon: 'dot',noCache: false}}, 
-  //     {path: 'modellog', component: modellog, name: 'modellog', meta: {title: 'modellog',icon: 'dot',noCache: false}}, 
+  //     //{path: 'modelregister', component: modelregister, name: 'modelregister', meta: {title: 'modelregister',icon: 'dot',noCache: false}},
+  //     //{path: 'modelvisual', component: modelvisual, name: 'modelvisual', meta: {title: 'modelvisual',icon: 'dot',noCache: false}}, 
+  //     //{path: 'modelmonitor', component: modelmonitor, name: 'modelmonitor', meta: {title: 'modelmonitor',icon: 'dot',noCache: false}}, 
+  //     //{path: 'mlmodelmanage', component: mlmodelmanage, name: 'mlmodelmanage', meta: {title: 'mlmodelmanage',icon: 'dot',noCache: false}}, 
+  //     //{path: 'vedioanlyzemanage', component: vedioanlyzemanage, name: 'vedioanlyzemanage', meta: {title: 'vedioanlyzemanage',icon: 'dot',noCache: false}}, 
+  //     //{path: 'graphmodelmanage', component: graphmodelmanage, name: 'graphmodelmanage', meta: {title: 'graphmodelmanage',icon: 'dot',noCache: false}}, 
+  //     //{path: 'modelstatistics', component: modelstatistics, name: 'modelstatistics', meta: {title: 'modelstatistics',icon: 'dot',noCache: false}}, 
+  //     //{path: 'modellog', component: modellog, name: 'modellog', meta: {title: 'modellog',icon: 'dot',noCache: false}}, 
 
   //   ]
   // },

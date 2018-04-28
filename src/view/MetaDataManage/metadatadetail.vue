@@ -10,6 +10,7 @@
         class="filter-tree"
         :data="treedata"
         :props="defaultProps"
+        :highlight-current = "true"
         node-key="id"
         :default-expanded-keys="['2f8daa54-4927-11e8-aa05-000c2958c75b']"
         :filter-node-method="filterNode"
@@ -67,7 +68,7 @@
     </el-table-column>
   </el-table>
 
-  <div v-if = "metadatadetail.length!=0">
+  <div v-if = "ResourceStatus!= false">
       <div class='fltag'>
           <h3 style="float:left;">资源属性</h3>
 
@@ -222,35 +223,9 @@
 
 <script>
 export default {
-  watch: {
-    filterText(val) {
-      this.$refs.tree2.filter(val);
-    }
-  },
-
-  methods: {
-    filterNode(value, data) {
-      if (!value) return true;
-      return data.label.indexOf(value) !== -1;
-    },
-    async nodeclick(data) {
-      const metaclass = await this.$Data.metaclass(data.id);
-      this.upmetadataclass = metaclass.upclass;
-      this.downmetadataclass = metaclass.downclass;
-      if(Number(data.isresource)===1){
-        const metadata = await this.$Data.metadatadetail(data.id);  
-        console.log('METADATA') 
-        console.log(metadata)
-        this.metadatadetail = metadata   
-      }
-      else {
-        this.metadatadetail = ''
-      }
-    }
-  },
-
   data() {
     return {
+      ResourceStatus: null,
       upmetadataclass: [],
       downmetadataclass: [],
       metadatadetail: [],
@@ -270,7 +245,37 @@ export default {
       // 默认加载
       this.nodeclick(this.treedata[0]);
     })();
-  }
+  },
+
+  watch: {
+    filterText(val) {
+      this.$refs.tree2.filter(val);
+    }
+  },
+
+  methods: {
+    filterNode(value, data) {
+      if (!value) return true;
+      return data.label.indexOf(value) !== -1;
+    },
+    async nodeclick(data) {
+      const metaclass = await this.$Data.metaclass(data.id);
+      this.upmetadataclass = metaclass.upclass;
+      this.downmetadataclass = metaclass.downclass;
+      if(Number(data.isresource)===1){
+        const metadata = await this.$Data.metadatadetail(data.id);  
+        console.log('METADATA') 
+        console.log(metadata)
+        this.metadatadetail = metadata  
+        this.ResourceStatus = true
+      }
+      else {
+        this.ResourceStatus = false
+      }
+    }
+  },
+
+
 };
 </script>
 

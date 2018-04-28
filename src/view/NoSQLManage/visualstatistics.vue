@@ -1,33 +1,30 @@
 <template>
-<el-row type="flex" class="row-bg">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="18"><div class="grid-content bg-purple-light"></div></el-col>
-</el-row>
+  <el-upload
+    class="upload-demo"
+    action="http://127.0.0.1:9000/api/v1/UploadFile"
+    :on-preview="handlePreview"
+    :on-remove="handleRemove"
+    :file-list="fileList2"
+    list-type="picture">
+    <el-button size="small" type="primary">点击上传</el-button>
+    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+  </el-upload>
 </template>
-
-
-<style scoped>
-  .el-row {
-    margin-bottom: 20px;
+<script>
+  export default {
+    data() {
+      return {
+        fileList2: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
+      };
+    },
+    methods: {
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+        console.log(this.fileList2)
+      },
+      handlePreview(file) {
+        console.log(file);
+      }
+    }
   }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
+</script>

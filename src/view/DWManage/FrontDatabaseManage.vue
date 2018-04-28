@@ -8,8 +8,8 @@
           <el-button type="primary" @click="Ins" class="fb-btn" icon="el-icon-plus">添加</el-button>
           <el-button type="primary" @click="Upd"  class="fb-btn" icon="el-icon-edit" :disabled='UpButtionDisabled'>编辑</el-button>
           <el-button type="warning" @click="Del" class="fb-btn" icon="el-icon-delete" :disabled='DelButtionDisabled'>删除</el-button>
-          <el-button type="success" class="fb-btn" icon="el-icon-upload">导入</el-button>
-          <el-button type="success" class="fb-btn" icon="el-icon-download">导出</el-button>
+          <!-- <el-button type="success" class="fb-btn" icon="el-icon-upload">导入</el-button>
+          <el-button type="success" class="fb-btn" icon="el-icon-download">导出</el-button> -->
         </div>
         <div class="tab_main">
           <el-table

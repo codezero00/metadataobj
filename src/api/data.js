@@ -129,6 +129,10 @@ class Data {
     return request.post('BloodRrlationInsOrUp',params)
   }
   
+  static MetaDataClassInsOrUp(params){
+    return request.post('MetaDataClassInsOrUp',params)
+  }
+
 }
 
 export default Data

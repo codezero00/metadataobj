@@ -10,6 +10,7 @@
         class="filter-tree"
         :data="treedata"
         :props="defaultProps"
+        :highlight-current = "true"
         node-key="id"
         :default-expanded-keys="['2f8daa54-4927-11e8-aa05-000c2958c75b']"
         :filter-node-method="filterNode"
@@ -121,57 +122,6 @@
 
     </div></el-col>
 
-  <!-- <el-dialog
-    title="提示"
-    :visible.sync="dialogVisible"
-    width="30%"
-    :before-close="handleClose">
-
-            <el-form
-              ref="form"
-              model={this.form}
-              rules={this.rules}
-              label-width="80px"
-            >
-              <el-form-item label="名称" prop="checkName">
-                <el-input v-model="this.treedata" />
-              </el-form-item>
-              <el-form-item label="前置库IP">
-                <el-input v-model="this.treedata" />
-              </el-form-item>
-              <el-form-item label="使用软件">
-                <el-input v-model="this.treedata" />
-              </el-form-item>
-              <el-form-item label="位置">
-                <el-input v-model="this.treedata" />
-              </el-form-item>
-              <el-form-item label="所属部门">
-                <el-input v-model="this.treedata" />
-              </el-form-item>
-              <el-form-item label="状态">
-                <el-select v-model="this.treedata" placeholder="请选择活动区域">
-                  <el-option label="区域一" value="shanghai"></el-option>
-                  <el-option label="区域二" value="beijing"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="作用">
-                <el-input type="textarea" v-model="this.treedata" />
-              </el-form-item>
-              <el-form-item label="备注">
-                <el-input type="textarea" v-model="this.treedata" />
-              </el-form-item>
-              <div class="formfooter">
-                <el-button >
-                  取消
-                </el-button>
-                <el-button type="primary" >
-                  保存
-                </el-button>
-              </div>
-            </el-form>
-
-  </el-dialog> -->
-
 </el-row>
 </template>
 
@@ -195,33 +145,46 @@ export default {
         label: "label"
       },
       form: {
-        mcid:null,
-        pid:'',
-        metaclsno:'',
-        classno:'',
-        isresource:'',
-        level:'',
-        metaclsname:'',
-        metaclspy:'',
-        remark:'',
-        app:'',
-        createname:'',
+        mcid: null,
+        pid: "",
+        metaclsno: "",
+        metaclspno: "",
+        classno: "",
+        isresource: "",
+        level: "",
+        metaclsname: "",
+        metaclspy: "",
+        remark: "",
+        app: "",
+        createname: "",
         isdel: 1
       }
     };
   },
   mounted() {
-    (async () => {
-      const metaclasstree = await this.$Data.metaclasstree();
-      this.treedata = metaclasstree;
-      // 默认加载
-      this.nodeclick(this.treedata[0]);
-    })();
+    // (async () => {
+    //   const metaclasstree = await this.$Data.metaclasstree();
+    //   this.treedata = metaclasstree;
+    //   // 默认加载
+    //   this.nodeclick(this.treedata[0]);
+    // })();
+    this.GetMetaClassTree();
+  },
+  computed: {
+    mcno(){
+      return this.form.metaclspno+this.form.classno
+    }
   },
   methods: {
     filterNode(value, data) {
       if (!value) return true;
       return data.label.indexOf(value) !== -1;
+    },
+    async GetMetaClassTree() {
+      const metaclasstree = await this.$Data.metaclasstree();
+      this.treedata = metaclasstree;
+      // 默认加载
+      this.nodeclick(this.treedata[0]);
     },
     async nodeclick(data) {
       // console.log("nodeclick");
@@ -231,26 +194,45 @@ export default {
       // if(data){
       //   id = data.id
       // }
+      // debugger
       const metaclass = await this.$Data.metaclass(data.id);
       this.upmetadataclass = metaclass.upclass;
       this.downmetadataclass = metaclass.downclass;
+      return metaclass
       // console.log(this.downmetadataclass.length);
     },
 
-    update(node, data) {
-      this.FormClear();
+    async update(node, data) {
+      let metaclass = await this.nodeclick(data);
+      // console.log("node !!!!!!!!!!!");
+      // console.log(node);
+      // console.log("data !!!!!!!!!!!");
+      // console.log(data);
+
+      this.form.mcid = data.id
+      // this.form.pid = data.pid
+      this.form.metaclsno = metaclass.upclass[0].FLBM;
+      // this.form.classno = "";
+      this.form.isresource = data.isresource;
+      // this.form.level = "";
+      this.form.metaclsname = metaclass.upclass[0].FLMC;
+      this.form.metaclspy = metaclass.upclass[0].ZWQP;
+      this.form.remark = metaclass.upclass[0].FLDY;
+      this.form.app = metaclass.upclass[0].YYXT;
+      this.form.createname = metaclass.upclass[0].FZDW;
+
       this.InitDiaglog();
-      this.$store.dispatch("setDialogTitle", "插入");
+      this.$store.dispatch("setDialogTitle", "更新");
       this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
     },
     append(node, data) {
-      console.log("node !!!!!!!!!!!")
-      console.log(node)
-      console.log("data !!!!!!!!!!!")
-      console.log(data)
+      // console.log("node !!!!!!!!!!!");
+      // console.log(node);
+      // console.log("data !!!!!!!!!!!");
+      // console.log(data);
       this.FormClear();
-      this.InitDiaglog(data.metaclsno);
+      this.InitDiaglog(node, data);
       this.$store.dispatch("setDialogTitle", "插入");
       this.$store.dispatch("setDialogWidth", "30%");
       this.$store.dispatch("setDialogVisible", true);
@@ -261,12 +243,35 @@ export default {
       // data.children.push(newChild);
     },
     remove(node, data) {
-      this.dialogVisible = true;
-      console.log("remove");
-      // const parent = node.parent;
-      // const children = parent.data.children || parent.data;
-      // const index = children.findIndex(d => d.id === data.id);
-      // children.splice(index, 1);
+      this.$confirm("此操作将永久删除, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(async () => {
+
+            const delform = {
+              mcid: data.id,
+              isdel: 0
+            };
+
+            let res = await this.$Data.MetaDataClassInsOrUp(delform);
+            if (res === 1) {
+              this.$message({ message: "删除成功!", type: "success" });
+            } else {
+              this.$message.error("数据删除失败！");
+            }
+
+            this.GetMetaClassTree();
+
+        })
+        .catch(err => {
+          this.$message({
+            type: "info",
+            message: err //"已取消删除"
+          });
+        });
+      this.FormClear();
     },
 
     renderContent(h, { node, data, store }) {
@@ -274,10 +279,10 @@ export default {
         <span class="custom-tree-node">
           <span>{node.label}</span>
           <span /*v-show={node.level != 1}*/>
-            <el-button
+            <el-button v-show={data.isresource != 1}
               style="color:#909399;margin-left:5px"
               type="text"
-              on-click={() => this.append(node,data)}
+              on-click={() => this.append(node, data)}
             >
               <svg-icon icon-class="plus" />
             </el-button>
@@ -289,6 +294,7 @@ export default {
               <svg-icon icon-class="update" />
             </el-button>
             <el-button
+              v-show={node.isLeaf == true}
               style="color:#909399;margin-left:0px"
               type="text"
               on-click={() => this.remove(node, data)}
@@ -314,8 +320,16 @@ export default {
       this.form.createname = "";
       this.form.isdel = 1;
     },
-    InitDiaglog(data) {
-      // this.$iouform({ data: {}, propsData: {} });
+    InitDiaglog(node,data) {
+      debugger;
+      let bool = "undefined"!=typeof(node)&&"undefined"!=typeof(data)
+      // const y = typeof(data)
+      if(bool){
+        this.form.metaclspno = data.metaclsno;
+        this.form.pid = data.id;
+        this.form.level = node.level+1
+      } 
+
       let xx = {
         propsData: {
           renderContent: (
@@ -326,9 +340,12 @@ export default {
               label-width="80px"
             >
               <el-form-item label="分类编码" prop="checkName">
+              { (bool)?
                 <el-input placeholder="请输入内容" v-model={this.form.classno}>
-                  <template slot="prepend">{data}</template>
-                </el-input>
+                  <template slot="prepend">{data.metaclsno}</template>
+                </el-input>:
+                <el-input v-model={this.form.metaclsno} disabled/>
+              }
               </el-form-item>
               <el-form-item label="分类名称">
                 <el-input v-model={this.form.metaclsname} />
@@ -349,7 +366,7 @@ export default {
                 </select>
               </el-form-item>
               <el-form-item label="分类定义">
-                <el-input type="textarea" v-model={this.form.effect} />
+                <el-input type="textarea" v-model={this.form.remark} />
               </el-form-item>
 
               <div class="formfooter">
@@ -370,9 +387,25 @@ export default {
       };
       this.$store.dispatch("setrender", xx.propsData.renderContent);
     },
-
-
-
+    async Save() {
+      debugger;
+      this.form.metaclsno=this.mcno;
+      // console.log(this.mcno)
+      console.log(this.form)
+      // console.log(this.form.metaclspno+this.form.classno)
+      const res = await this.$Data.MetaDataClassInsOrUp(this.form);
+      // if (res === 1) {
+      //   this.$message({
+      //     message: "数据添加成功！",
+      //     type: "success"
+      //   });
+      //   this.FormClear();
+      // } else {
+      //   this.$message.error("数据添加失败！");
+      // }
+      this.$store.dispatch("setDialogVisible", false);
+      this.GetMetaClassTree();
+    }
   }
 };
 </script>
@@ -394,7 +427,7 @@ export default {
   margin: 0 15px 0 0;
 } */
 .right {
-  height: 840px; 
+  height: 840px;
   position: relative;
   margin-top: 20px;
   margin-right: 20px;
