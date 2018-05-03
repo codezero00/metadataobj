@@ -102,6 +102,12 @@ class Data {
     return request.get('DBTableColumnTreeQuery')
   }
 
+  //NosqlDatabase
+  static NosqlDatabase(params){
+    return request.get('NosqlDatabaseQuery',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
+  }
+
+
   // I U D
   //FrontBaseInsOrUp
   static FrontBaseInsOrUp(params){
@@ -131,6 +137,10 @@ class Data {
   
   static MetaDataClassInsOrUp(params){
     return request.post('MetaDataClassInsOrUp',params)
+  }
+
+  static NosqlDatabaseInsOrUp(params){
+    return request.post('NosqlDatabaseInsOrUp',params)
   }
 
 }
