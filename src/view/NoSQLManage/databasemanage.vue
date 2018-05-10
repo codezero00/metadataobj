@@ -29,12 +29,19 @@
 
 
             <el-table-column
-              prop="name"
+              prop="dbname"
               label="名称"
               sortable
               align=center
               >
             </el-table-column>
+            <!-- <el-table-column
+              prop="type"
+              label="类型"
+              sortable
+              align=center
+              >
+            </el-table-column> -->
             <el-table-column
               prop="ip"
               label="IP"
@@ -63,13 +70,7 @@
               align=center
               >
             </el-table-column>
-            <el-table-column
-              prop="describe"
-              label="描述"
-              sortable
-              align=center
-              >
-            </el-table-column>
+
             <el-table-column
               prop="remark"
               label="备注"
@@ -135,6 +136,7 @@ export default {
       form: {
         ndid: null,
         name: "",
+        type:"",
         describe: "",
         ip: "",
         port: "",
@@ -175,7 +177,7 @@ export default {
     FormClear() {
       this.form.ndid = "";
       this.form.name = "";
-      this.form.describe = "";
+      this.form.type = "";
       this.form.ip = "";
       this.form.port = "";
       this.form.accountnumber = "";
@@ -200,6 +202,7 @@ export default {
               <el-form-item label="名称" prop="checkName">
                 <el-input v-model={this.form.name} />
               </el-form-item>
+
               <el-form-item label="IP地址">
                 <el-input v-model={this.form.ip} />
               </el-form-item>
@@ -211,9 +214,6 @@ export default {
               </el-form-item>
               <el-form-item label="密码">
                 <el-input v-model={this.form.password} />
-              </el-form-item>
-              <el-form-item label="描述">
-                <el-input type="textarea" v-model={this.form.describe} />
               </el-form-item>
               <el-form-item label="备注">
                 <el-input type="textarea" v-model={this.form.remark} />

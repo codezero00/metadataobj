@@ -31,6 +31,16 @@
             >
 							<el-table-column type="selection" width="55" align=center>
 							</el-table-column>
+              <el-table-column label="添加列" width="70" align=center>
+                <template slot-scope="scope">
+                  <el-button
+                    size="mini"
+                    type="primary"
+                    plain
+                    icon="el-icon-plus"
+                    @click="AddColumn(scope.row)"></el-button>
+                </template>
+							</el-table-column>
 							<el-table-column prop="resname" label="所属资源库" sortable align=center>
 							</el-table-column>
 							<el-table-column prop="dlname" label="所属层级" sortable align=center>
@@ -60,16 +70,28 @@
 						</el-pagination>
 					</div>
 				</div>
-
 			</div>
 		</el-col>
+
+    <column-selection
+    :in-dialog-visible="this.inDialogVisible"
+    @getDialogVisible="getDialogVisible"
+    :in-tabid="this.inTabid"
+    ></column-selection>
+
 	</el-row>
 </template>
 
 <script>
+import ColumnSelection from "./components/DataTableManage/ColumnSelection.vue";
 export default {
+  components: {
+    ColumnSelection
+  },
   data() {
     return {
+      inTabid:'',
+      inDialogVisible:false,
       DBTableData: [],
       ParamsPage: {
         CurrentPage: 1,
@@ -97,9 +119,8 @@ export default {
       TmpSelectRows: [],
       UpButtionDisabled: true,
       DelButtionDisabled: true,
-      OptionsRs:[],
-      OptionsLy:[],
-
+      OptionsRs: [],
+      OptionsLy: []
     };
   },
 
@@ -126,17 +147,17 @@ export default {
       this.OptionsRs = ResourceBase.res;
     },
     // 获取所属层级数据信息
-    async GetDataLayer(params){
-      const DataLayer = await this.$Data.DataLayer(params); 
+    async GetDataLayer(params) {
+      const DataLayer = await this.$Data.DataLayer(params);
       this.OptionsLy = DataLayer.res;
     },
 
-	  handleSizeChange(value){
-      this.ParamsPage.PageSize=value;
+    handleSizeChange(value) {
+      this.ParamsPage.PageSize = value;
       this.GetTable(this.ParamsPage);
     },
-    handleCurrentChange(value){
-      this.ParamsPage.CurrentPage=value;
+    handleCurrentChange(value) {
+      this.ParamsPage.CurrentPage = value;
       this.GetTable(this.ParamsPage);
     },
 
@@ -173,22 +194,16 @@ export default {
             <el-form ref="form" model={this.form} label-width="80px">
               <el-form-item label="所属资源库">
                 <select v-model={this.form.rbid} placeholder="请选择">
-                  { this.OptionsRs.map(items => { return (
-                    <option
-                      label={items.XMMC}
-                      value={items.rbid}>
-                    </option>
-                  )} ) }
+                  {this.OptionsRs.map(items => {
+                    return <option label={items.XMMC} value={items.rbid} />;
+                  })}
                 </select>
               </el-form-item>
               <el-form-item label="所属层级">
                 <select v-model={this.form.dlid} placeholder="请选择">
-                  { this.OptionsLy.map(items => { return (
-                    <option
-                      label={items.name}
-                      value={items.dlid}>
-                    </option>
-                  )} ) }
+                  {this.OptionsLy.map(items => {
+                    return <option label={items.name} value={items.dlid} />;
+                  })}
                 </select>
               </el-form-item>
               <el-form-item label="表英文名称">
@@ -283,6 +298,17 @@ export default {
           });
         });
       this.FormClear();
+    },
+    AddColumn(data) {
+      this.inDialogVisible=false
+      this.inTabid=data.tabid
+      this.inDialogVisible=true
+    },
+    getDialogVisible(data){
+      // 获取组件ColumnSelection返回的emit对象
+      // console.log("getDialogVisible")
+      // console.log(data)
+      this.inDialogVisible=data
     }
   }
 };

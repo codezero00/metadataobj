@@ -17,6 +17,7 @@ class Login {
     return request.get('userinfo', null)
   }
 
+
 }
 
 export default Login

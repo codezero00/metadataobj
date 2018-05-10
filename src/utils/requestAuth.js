@@ -24,8 +24,6 @@ function filterNull(o) {
 class ax {
   constructor() {
     this.root = 'http://127.0.0.1:9000/api/v1'
-    //this.root = 'http://10.103.3.110/api/v1'
-    //this.root = '/api/v1'
     this.config = {} //写入config信息
   }
 
@@ -40,28 +38,50 @@ class ax {
       url: url,
       data: method === 'POST' || method === 'PUT' ? _params : null, //如果method === 'POST' || method === 'PUT' 为真则 params 假为 null
       params: method === 'GET' || method === 'DELETE' ? _params : null,
+      headers: {'Authorization': "Bearer " + sessionStorage.getItem('ssss')},
       //如名字表示的三元运算符需要三个操作数。
       //语法是 条件 ? 结果1 : 结果2;. 
       //这里你把条件写在问号(?)的前面后面跟着用冒号(:)分隔的结果1和结果2。满足条件时结果1否则结果2。
-      baseURL: this.root,
-      withCredentials: true //支持跨域
+      // baseURL: this.root,
+      //withCredentials: true //支持跨域
     };
 
-    // debugger;
+
+
+    debugger;
     try {
+      debugger;
       const res = await axios(conf)
       console.log('axios data:')
       console.log(res)
       if (res.data.success === true) {
         // console.log(res.data.data)
-        return res.data.data
-      } else if (res.data.failure) {
+        return res.data.result
+      } else if (res.data.success === false) {
         return res.data
       } else {
         console.log('error!!!!')
         console.log(res.data)
       }
+
+
+
+      // respone拦截器
+      res.interceptors.response.use(
+        response => response,
+        error => {
+          console.log('err' + error) // for debug
+          Message({
+            message: error.message,
+            type: 'error',
+            duration: 5 * 1000
+          })
+          return Promise.reject(error)
+        })
+
+
     } catch (err) {
+      debugger;
       console.log(err)
     }
   }
@@ -75,7 +95,7 @@ export default {
   get: (url, params, success, failure) => {
     return myax.apiAxios('GET', url, params)
   },
-  post (url, params, success, failure) {
+  post(url, params, success, failure) {
     return myax.apiAxios('POST', url, params, success, failure)
   },
   put: function (url, params, success, failure) {

@@ -34,9 +34,13 @@ function filterAsyncRouter(asyncRouterMap, roles) {
 const permission = {
   state: {
     routers: constrouterMap,
-    addRouters: []
+    addRouters: [],
+    uuid:'',
   },
   mutations: {
+    SET_UUID: (state, id) => {
+      state.uuid = id
+    },
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
       state.routers = constrouterMap.concat(routers)
@@ -55,6 +59,9 @@ const permission = {
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })
+    },
+    SetUUID({ commit }, data){
+      commit('SET_UUID', data)
     }
   }
 }

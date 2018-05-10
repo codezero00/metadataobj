@@ -10,7 +10,8 @@ const getters = {
     gbdiaglog: state => state.pub.DialogGolbalVisible,
     dialogrender: state => state.pub.DialogRenderContent,
     dialogwidth: state => state.pub.DialogAttr.Width,
-    dialogtitle: state => state.pub.DialogAttr.Title
+    dialogtitle: state => state.pub.DialogAttr.Title,
+    uuid: state => state.permission.uuid
   }
   export default getters
   

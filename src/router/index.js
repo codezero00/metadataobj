@@ -41,7 +41,7 @@ import RelatedAnalyze from '@/view/DataRelatedManage/RelatedAnalyze.vue'
 import RelatedGraph from '@/view/DataRelatedManage/RelatedGraph.vue'
 //非结构化数据管理
 import nosqldatabasemanage from '@/view/NoSQLManage/databasemanage.vue'
-import nosqlclassmanage from '@/view/NoSQLManage/classmanage.vue'
+
 import nosqlindexmanage from '@/view/NoSQLManage/indexmanage.vue'
 import nosqladvancedsearch from '@/view/NoSQLManage/advancedsearch.vue'
 import nosqlvisualstatistics from '@/view/NoSQLManage/visualstatistics.vue'
@@ -66,13 +66,8 @@ Vue.use(Router)
 export const constrouterMap = [{
     path: '/',
     name: '登陆页',
-    redirect: '/login',
-    hidden: true
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: login,
+    // redirect: '/home',
+    redirect: '/dashboard',
     hidden: true
   },
   {
@@ -98,7 +93,6 @@ export const constrouterMap = [{
       }
     }]
   },
-
 
   {
     path: '/metadatamanage',
@@ -226,10 +220,10 @@ export const constrouterMap = [{
     }, 
     children: [
       {path: 'nosqldatabasemanage', component: nosqldatabasemanage, name: 'nosqldatabasemanage', meta: {title: 'nosqldatabasemanage',icon: 'dot',noCache: false}},
-      {path: 'nosqlclassmanage', component: nosqlclassmanage, name: 'nosqlclassmanage', meta: {title: 'nosqlclassmanage',icon: 'dot',noCache: false}}, 
+      {path: 'NosqlFileManage', component: () => import('@/view/NoSQLManage/FileManage.vue'), name: 'NosqlFileManage', meta: {title: 'NosqlFileManage',icon: 'dot',noCache: false}}, 
       //{path: 'nosqlindexmanage', component: nosqlindexmanage, name: 'nosqlindexmanage', meta: {title: 'nosqlindexmanage',icon: 'dot',noCache: false}}, 
-      {path: 'nosqladvancedsearch', component: nosqladvancedsearch, name: 'nosqladvancedsearch', meta: {title: 'nosqladvancedsearch',icon: 'dot',noCache: false}}, 
-      {path: 'nosqlvisualstatistics', component: nosqlvisualstatistics, name: 'nosqlvisualstatistics', meta: {title: 'nosqlvisualstatistics',icon: 'dot',noCache: false}}, 
+      //{path: 'nosqladvancedsearch', component: nosqladvancedsearch, name: 'nosqladvancedsearch', meta: {title: 'nosqladvancedsearch',icon: 'dot',noCache: false}}, 
+      //{path: 'nosqlvisualstatistics', component: nosqlvisualstatistics, name: 'nosqlvisualstatistics', meta: {title: 'nosqlvisualstatistics',icon: 'dot',noCache: false}}, 
       //{path: 'nosqllog', component: nosqllog, name: 'nosqllog', meta: {title: 'nosqllog',icon: 'dot',noCache: false}}, 
 
     ]

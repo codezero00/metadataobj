@@ -29,7 +29,7 @@ class Data {
 
   //metadatadetail
   static metadatadetail(params){
-    return request.get('metadata',{'id':params})
+    return request.get('metadata',{'id':params.id,'col':params.col,'str':params.str})
   }
 
   //FrontBase
@@ -107,6 +107,15 @@ class Data {
     return request.get('NosqlDatabaseQuery',{'CurrentPage':params.CurrentPage,'PageSize':params.PageSize})
   }
 
+  static NosqlBaseTree(){
+    return request.get('NosqlBaseTreeQuery')
+  }
+
+  //MetaDataTree
+  static MetaDataTree(){
+    return request.get('MetaDataTreeQuery')
+  }
+
 
   // I U D
   //FrontBaseInsOrUp
@@ -139,9 +148,24 @@ class Data {
     return request.post('MetaDataClassInsOrUp',params)
   }
 
+  static MetaDataInsOrUp(params){
+    return request.post('MetaDataInsOrUp',params)
+  }
+
   static NosqlDatabaseInsOrUp(params){
     return request.post('NosqlDatabaseInsOrUp',params)
   }
+
+  static DBTableColumnInsOrUp(params){
+    return request.post('DBTableColumnInsOrUp',params)
+  }
+
+  //nosql base
+  //nosqlquery
+  static NosqlQuery(params){
+    return request.get('NosqlQuery',{"FileName":params.FileName,"CurrentPage":params.CurrentPage,"PageSize":params.PageSize})
+  }
+
 
 }
 

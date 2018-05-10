@@ -74,8 +74,7 @@ export default {
       TmpSelectRows: [],
       UpButtionDisabled: true,
       DelButtionDisabled: true,
-      OptionsTree: [],
-
+      OptionsTree: []
     };
   },
 
@@ -84,7 +83,6 @@ export default {
     this.GetTree();
   },
   methods: {
-
     // 获取表数据
     async GetBloodRelation(params) {
       const bloodrelation = await this.$Data.BloodRelation(params);
@@ -97,7 +95,6 @@ export default {
       const dbtabletree = await this.$Data.DBTableColumnTree();
       this.OptionsTree = dbtabletree;
     },
-
 
     handleSizeChange(value) {
       this.ParamsPage.PageSize = value;
@@ -138,32 +135,30 @@ export default {
             <el-form ref="form" model={this.form} label-width="80px">
               <el-form-item label="源表">
                 <slot>
-                    <TreeSelect
-                    
+                  <TreeSelect
                     options={this.OptionsTree}
                     disable-branch-nodes={true}
                     show-count={true}
                     searchable={true}
                     on-select={node => {
-                      this.selectsrc(node)
+                      this.selectsrc(node);
                     }}
                     placeholder="请选择源表字段?"
-                    />
+                  />
                 </slot>
               </el-form-item>
               <el-form-item label="目标表">
                 <slot>
-                    <TreeSelect
-                    
+                  <TreeSelect
                     options={this.OptionsTree}
                     disable-branch-nodes={true}
                     show-count={true}
                     searchable={true}
                     on-select={node => {
-                      this.selectdst(node)
+                      this.selectdst(node);
                     }}
                     placeholder="请选择目标表字段?"
-                    />
+                  />
                 </slot>
               </el-form-item>
               <div class="formfooter">
@@ -248,11 +243,11 @@ export default {
         });
       this.FormClear();
     },
-    selectsrc(node){
-      this.form.srcid = node.id
+    selectsrc(node) {
+      this.form.srcid = node.id;
     },
-    selectdst(node){
-      this.form.dstid = node.id
+    selectdst(node) {
+      this.form.dstid = node.id;
     }
   }
 };

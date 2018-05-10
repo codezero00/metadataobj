@@ -1,15 +1,16 @@
 import Login from '@/api/login'
+import AuthData from '@/api/authdata'
 
 const user = {
     state: {
         id: '',
         email: '',
+        accout: '',
         passwd: '',
         admin: '',
         name: '',
         image: '',
         created_at: ''
-
     },
   
     mutations: {
@@ -18,6 +19,9 @@ const user = {
       },
       SET_EMAIL: (state, email) => {
         state.email = email
+      },
+      SET_ACCOUT: (state, accout) => {
+        state.accout = accout
       },
       SET_PASSWD: (state, passwd) => {
         state.passwd = passwd
@@ -64,6 +68,23 @@ const user = {
         return data
       },
   
+      // 获取用户信息 Oauth2.0
+      async GetOauthUserInfo({ commit, state }) {
+
+        let data = await AuthData.getCurrentUser()
+
+        if(data){
+          commit('SET_ID',data.user.id)
+          commit('SET_EMAIL',data.user.email)
+          commit('SET_ACCOUT',data.user.useraccout)
+          commit('SET_NAME',data.user.username)
+        }
+        else{
+          console.log('getuserinfo do not have data!!')
+        }
+        return data
+      },
+
       // 第三方验证登录
       // LoginByThirdparty({ commit, state }, code) {
       //   return new Promise((resolve, reject) => {

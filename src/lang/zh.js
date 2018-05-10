@@ -90,6 +90,7 @@ export default {
     //
     nosqlmanage:'非结构化数据',
     nosqldatabasemanage:'建库管理',
+    NosqlFileManage:'文件管理',
     nosqlclassmanage:'分类管理',
     nosqlindexmanage:'索引管理',
     nosqladvancedsearch:'高级搜索',

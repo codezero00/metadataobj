@@ -16,7 +16,7 @@ import '@riophae/vue-treeselect/dist/vue-treeselect.min.css'
 // // 注册全局组件END
 
 
-import './permission'
+// import './permission'
 import './icons' // icon
 import i18n from './lang' // Internationalization
 import * as filters from './filters' // global filter
@@ -27,8 +27,9 @@ Vue.prototype.$echarts = echarts
 import store from './vuex/index' //vuex
 
 
-// import request from './utils/request' // 引用API文件
-// Vue.prototype.$api = request // 将API方法绑定到全局
+import request from './utils/requestAuth' // 引用API文件
+Vue.prototype.$api = request // 将API方法绑定到全局
+
 import data from './api/data' // 引用API文件
 Vue.prototype.$Data = data // 将API方法绑定到全局
 
