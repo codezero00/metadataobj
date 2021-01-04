@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@riophae/vue-treeselect": "0.0.21",
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "echarts": "^3.8.5",
     "element-ui": "^2.0.11",
